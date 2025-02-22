@@ -1,0 +1,348 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://lolicon.wtf</id>
+    <title>柚希的溫馨小窩🍊</title>
+    <subtitle>今天喝的是芋頭鮮奶 ~(￣▽￣)~*</subtitle>
+    <icon>https://lolicon.wtf/assets/favicon.ico</icon>
+    <link href="https://lolicon.wtf" />
+    <author>
+      <name>Yuzuki Shimotsuki</name>
+    </author>
+    <updated>2025-01-19T07:30:59.000Z</updated>
+    <entry>
+        <id>https://lolicon.wtf/2025/01/19/computer-science/wake-on-lan/</id>
+        <title>懶得去按電源鍵了？Wake On LAN 完整設定教學</title>
+        <link rel="alternate" href="https://lolicon.wtf/2025/01/19/computer-science/wake-on-lan/"/>
+        <content type="html">&lt;iframe id=&#34;video&#34; width=&#34;100%&#34; height=&#34;450&#34; src=&#34;https://www.youtube.com/embed/VG6sCC4afRI?controls=1&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;當你不在電腦前卻需要存取裡面的資料時，你會怎樣做？&lt;/p&gt;
+&lt;p&gt;很多朋友都會回答我使用遠端連線解決，因為這是一個非常便捷的選擇&lt;/p&gt;
+&lt;p&gt;然而，試想一下，假如電腦沒有開機呢？又該怎樣做？ &lt;span class=&#34;bulr&#34;&gt;(真的… 每次打開遠端桌面連接電腦時，卻發現電腦老是關機了 QAQ…)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;這時候，Wake On LAN 便派上用場了！&lt;/p&gt;
+&lt;p&gt;所以今天就要來教大家如何設定 Wake On LAN（網路喚醒），讓您只要透過手機就能遠端開啟電腦！&lt;/p&gt;
+&lt;h2 id=&#34;什麼是-wake-on-lan&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什麼是-wake-on-lan&#34;&gt;#&lt;/a&gt; 什麼是 Wake On LAN？&lt;/h2&gt;
+&lt;p&gt;Wake On LAN（簡稱 WOL）是一項允許您透過網路封包遠端開啟電腦的技術。簡單而言，就是發送一個特殊的「魔術封包」（Magic Packet）到目標電腦，讓其從關機狀態實時自動開機。&lt;/p&gt;
+&lt;p&gt;要讓 WOL 能夠正常運作，需要設定以下三個部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;網路卡 (Network Interface Card)&lt;/li&gt;
+&lt;li&gt;路由器 (Router)&lt;/li&gt;
+&lt;li&gt;BIOS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;讓我們一步一步來看該怎麼設定。&lt;/p&gt;
+&lt;h2 id=&#34;step-1設定網路卡-nic&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#step-1設定網路卡-nic&#34;&gt;#&lt;/a&gt; Step 1：設定網路卡 (NIC)&lt;/h2&gt;
+&lt;p&gt;首先要確認您的網路卡支援 WOL 功能，並進行正確設定。&lt;/p&gt;
+&lt;div class=&#34;note warning&#34;&gt;
+&lt;p&gt;無線網路卡並不支援網絡喚醒 (WOL) 功能&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;以 Windows 為例：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先於鍵盤按下  &lt;code&gt;Windows鍵 + X&lt;/code&gt; ，並選擇「裝置管理員」(Device Manager)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows1.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 1&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;展開「網路介面卡」(Network adapters)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows2.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 2&#34;&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;找到您使用的網路卡，按右鍵選擇「內容」(Properties)。小弟這邊使用的是 &amp;quot;Intel (R) Ethernet Controller I226-V&amp;quot;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows3.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 3&#34;&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;接着應該會看到以下畫面：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows4.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 4&#34;&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;移至「電源管理」(Power Management)，啟用「允許電腦關閉這個裝置以節省電源」(Allow the computer to turn off this device to save power) 和「允許這個裝置喚醒電腦」(Allow this device to wake the computer)，完成！&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows5.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 5&#34;&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;如果找不到這些選項，可能是您的網路卡不支援 WOL 功能喔！建議更換支援的網卡～&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;進階設定 （Optional)&lt;br /&gt;
+ 可移至「進階」(Advanced) 找到以下選項並啟用 😃&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Wake on Magic Packet&lt;/li&gt;
+&lt;li&gt;Wake on Pattern Match&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;step-2設定路由器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#step-2設定路由器&#34;&gt;#&lt;/a&gt; Step 2：設定路由器&lt;/h2&gt;
+&lt;p&gt;要讓外網也能喚醒電腦，路由器設定是關鍵！&lt;/p&gt;
+&lt;p&gt;不同品牌的路由器的設定方式有所參差，但基本上其概念也大同小異～以下小弟以 TP-Link 路由器作示例：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;開啟瀏覽器，輸入 &lt;span class=&#34;label&#34;&gt;192.168.0.1&lt;/span&gt; / &lt;span class=&#34;label&#34;&gt;192.168.1.1&lt;/span&gt; 或您的預設閘道進入管理介面&lt;br&gt;因為小弟已經更改預設閘道為 &lt;span class=&#34;label&#34;&gt;192.168.217.100&lt;/span&gt;，所以這邊輸入 &lt;span class=&#34;label&#34;&gt;192.168.217.100&lt;/span&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/chrome.png&#34; class=&#34;&#34; title=&#34;Chrome&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/tplinklogin1.png&#34; class=&#34;&#34; title=&#34;TP-Link Router Login Page&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;輸入您的管理員密碼&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/tplinklogin2.png&#34; class=&#34;&#34; title=&#34;TP-Link Router Login Page&#34;&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;建議更改預設的路由器登入密碼，防止被他人入侵。&lt;/p&gt;
+&lt;/div&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;登入後會看到以下介面&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig1.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;進入 &lt;span class=&#34;label&#34;&gt;Advanced&lt;/span&gt; → &lt;span class=&#34;label&#34;&gt;Network&lt;/span&gt; → &lt;span class=&#34;label&#34;&gt;DHCP Server&lt;/span&gt;，在下面的 Address Reservation 按 &lt;span class=&#34;label&#34;&gt;+ Add&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig2.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;輸入目標裝置的 &lt;span class=&#34;label&#34;&gt;IPv4&lt;/span&gt; 和 &lt;span class=&#34;label&#34;&gt;MAC&lt;/span&gt;，然後按 Save 保存&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig3.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;移至 &lt;span class=&#34;label&#34;&gt;Security&lt;/span&gt; → &lt;span class=&#34;label&#34;&gt;IP &amp;amp; MAC Binding&lt;/span&gt; 並啟用，於下方 Binding List 按 &lt;span class=&#34;label&#34;&gt;+ Add&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig4.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;輸入目標裝置的 &lt;span class=&#34;label&#34;&gt;MAC&lt;/span&gt; 和 &lt;span class=&#34;label&#34;&gt;IPv4&lt;/span&gt;，然後按 Save 保存&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig5.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;移至 &lt;span class=&#34;label&#34;&gt;NAT Forwarding&lt;/span&gt; → &lt;span class=&#34;label&#34;&gt;Port Forwarding&lt;/span&gt; ， 按 &lt;span class=&#34;label&#34;&gt;+ Add&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig6.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;ol start=&#34;9&#34;&gt;
+&lt;li&gt;設定連接埠轉發：
+&lt;ul&gt;
+&lt;li&gt;協定：All&lt;/li&gt;
+&lt;li&gt;外部埠：您要使用的埠&lt;/li&gt;
+&lt;li&gt;內部埠：您要使用的埠&lt;/li&gt;
+&lt;li&gt;內部 IP：您要喚醒的電腦 IP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;完成後按 Save 保存&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig7.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;h2 id=&#34;step-3主機板-bios-設定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#step-3主機板-bios-設定&#34;&gt;#&lt;/a&gt; Step 3：主機板 BIOS 設定&lt;/h2&gt;
+&lt;p&gt;這是最後但也是不可或缺的一步！下面小弟以 MSI 主機板為例：&lt;/p&gt;
+&lt;p&gt;進入 BIOS 的辦法有很多，以下是其中一種：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;開機時瘋狂按 Delete / F2 / F12 鍵進入 BIOS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;然而小弟啟用了快速啟動 (MSI Fast Boot)，跳過了鍵盤偵測的程序，故需要從 Windows 的復原介面進入&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;於復原 / 恢復介面中，選擇疑難排解 (Troubleshooting) → 進階選項 (Advanced options)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/recovery1.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/recovery2.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;選擇 UEFI 韌體設定 (UEFI Firmware Settings) → 然後按重新啟動 (Restart)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/recovery3.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/recovery4.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
+&lt;p&gt;進入 BIOS 後，進行如下設定：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;於主選單中，移至 &lt;span class=&#34;label&#34;&gt;SETTINGS&lt;/span&gt; → Advanced&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios1.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios2.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;選擇 &lt;span class=&#34;label&#34;&gt;Wake Up Event Setup&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios3.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;在 &lt;span class=&#34;label&#34;&gt;Resume By PCI-E/Networking Device&lt;/span&gt; 中，將設定更改為 &lt;span class=&#34;label&#34;&gt;Enable&lt;/span&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios4.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios5.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios6.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;大功告成！請按 &lt;span class=&#34;label&#34;&gt;X&lt;/span&gt; 儲存設定並重新開機&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;同樣地，不同品牌的主機板的設定方式有所參差，但基本上都能在進階選項中找到 WOL 設定。&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;實際測試&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#實際測試&#34;&gt;#&lt;/a&gt; 實際測試&lt;/h2&gt;
+&lt;p&gt;設定完成後，建議先在區網內測試：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;關閉目標電腦&lt;/li&gt;
+&lt;li&gt;使用手機下載 WOL App（Android 推薦 &lt;a href=&#34;https://play.google.com/store/apps/details?id=co.uk.mrwebb.wakeonlan&amp;amp;hl=en_US&#34;&gt;Wake On LAN&lt;/a&gt;, iOS 推薦 &lt;a href=&#34;https://apps.apple.com/au/app/wolow-wake-on-lan/id1500970060&#34;&gt;Wolow - Wake on LAN&lt;/a&gt;）&lt;/li&gt;
+&lt;li&gt;輸入電腦的 &lt;span class=&#34;label&#34;&gt;MAC&lt;/span&gt; 和 &lt;span class=&#34;label&#34;&gt;IPv4 廣播位址&lt;/span&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;什麼是廣播位址？&lt;/p&gt;
+&lt;p&gt;廣播位址 (Broadcast Address) 是專門用來同時傳送到網路中所有工作站的一個位址。在使用 TCP/IP 協定的網路中，主機識別段 host ID 為全 1 的 IP 位址為廣播位址… （背後原理由於較複雜，在此並不詳述）&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;一般而言，廣播位址通常為路由器網段中的最後一個 IP 位置&lt;/p&gt;
+&lt;p&gt;例如： 若網段為 &lt;span class=&#34;label&#34;&gt;192.168.217.0&lt;/span&gt; ～ &lt;span class=&#34;label&#34;&gt;192.168.217.255&lt;/span&gt;，廣播位址為 &lt;span class=&#34;label&#34;&gt;192.168.217.255&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;發送喚醒訊號&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果電腦能成功開機，就代表設定成功了！&lt;/p&gt;
+&lt;p&gt;附送一個 Python 小程式供各位方便食用。祝用餐愉快 😄&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;span&gt;Wake-On-Lan-Script&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; socket&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; struct&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Computer&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;self&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; mac_address&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; hostname&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token boolean&#34;&gt;None&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        self&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;mac_address &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; mac_address&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        self&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hostname &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; hostname&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;wake&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;self&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; port&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token comment&#34;&gt;# Create a socket for sending the magic packet&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        sock &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; socket&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;socket&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;socket&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;AF_INET&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; socket&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;SOCK_DGRAM&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        sock&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;setsockopt&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;socket&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;SOL_SOCKET&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; socket&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;SO_REUSEADDR&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token comment&#34;&gt;# Bind the socket to a local address and port&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        sock&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;bind&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token comment&#34;&gt;# Construct the magic packet&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        mac_bytes_list &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; self&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;mac_address&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;split&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;:&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        mac_bytes &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; struct&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;pack&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;BBBBBB&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_bytes_list&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_bytes_list&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_bytes_list&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_bytes_list&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_bytes_list&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_bytes_list&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        magic_packet &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;b&#39;\xff&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;6&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; mac_bytes &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token comment&#34;&gt;# Send the magic packet to the IP address and port&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        sock&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;sendto&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;magic_packet&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;self&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;hostname&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; port&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        sock&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;close&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;食用方法：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;span&gt;Wake-On-Lan-Script&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;your&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;script&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;name&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; Computer&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# Specify the MAC address, and the public IP address or domain name that points to your router of your PC&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# e.g.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;computer1 &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; Computer&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_address1&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; ip_address1&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;computer2 &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; Computer&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_address2&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; ip_address2&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# ...&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# Wake up the PC(s)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;computer1&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;wake&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;computer2&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;wake&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# ...&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;常見問題-qa&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常見問題-qa&#34;&gt;#&lt;/a&gt; 常見問題 Q&amp;amp;A&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Q: 為什麼設定都正確但還是無法喚醒？&lt;/strong&gt;&lt;br /&gt;
+A: 最常見的原因是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;網路線沒接好&lt;/li&gt;
+&lt;li&gt;電源供應器沒有支援&lt;/li&gt;
+&lt;li&gt;防火牆 / 殺毒軟件擋住了喚醒封包&lt;/li&gt;
+&lt;li&gt;快速啟動功能已啟用。移至「控制台」 → 「電源管理」 → 「選擇按下電源按鈕時的行為」, 關閉「快速啟動」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Q: 筆電可以用 WOL 嗎？&lt;/strong&gt;&lt;br /&gt;
+A: 大部份筆電以使用無線網絡為主。新款筆電甚至不提供網絡線插口，故並不支援網絡喚醒。&lt;br /&gt;
+少部份舊款機型可以，但需要確保 BIOS 內有支援，其次需要特別注意電源管理設定，且最好使用原廠電源適配器。&lt;/p&gt;
+&lt;h2 id=&#34;總結&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#總結&#34;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
+&lt;p&gt;WOL 的功能設定可謂繁複，但設定好之後真的非常方便！再也不用擔心忘了開電腦而無法遠端工作了⋯⋯&lt;/p&gt;
+&lt;p&gt;不過要提醒大家，使用 WOL 時還是要注意資安問題，建議：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定期更新韌體&lt;/li&gt;
+&lt;li&gt;更改預設密碼&lt;/li&gt;
+&lt;li&gt;必要時才開啟 WOL 功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;您也打算設定 WOL 嗎？歡迎在下方留言分享您的使用經驗！&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;如果本文對您有幫助，歡迎分享給更多朋友！&lt;/em&gt;&lt;/p&gt;
+</content>
+        <category term="技術文" scheme="https://lolicon.wtf/categories/%E6%8A%80%E8%A1%93%E6%96%87/" />
+        <category term="教學" scheme="https://lolicon.wtf/tags/%E6%95%99%E5%AD%B8/" />
+        <category term="Computer Science" scheme="https://lolicon.wtf/tags/Computer-Science/" />
+        <category term="網路設定" scheme="https://lolicon.wtf/tags/%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A/" />
+        <category term="WOL" scheme="https://lolicon.wtf/tags/WOL/" />
+        <category term="遠端控制" scheme="https://lolicon.wtf/tags/%E9%81%A0%E7%AB%AF%E6%8E%A7%E5%88%B6/" />
+        <updated>2025-01-19T07:30:59.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://lolicon.wtf/2025/01/02/test/</id>
+        <title>Hello World！Am I look cute?</title>
+        <link rel="alternate" href="https://lolicon.wtf/2025/01/02/test/"/>
+        <content type="html">&lt;p&gt;Hey~ Am I look cute?&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/02/test/image2.jpg&#34; class=&#34;&#34; title=&#34;This is an example image&#34;&gt;
+</content>
+        <category term="日常廢文" scheme="https://lolicon.wtf/categories/%E6%97%A5%E5%B8%B8%E5%BB%A2%E6%96%87/" />
+        <updated>2025-01-02T08:40:12.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://lolicon.wtf/2025/01/01/english/supercalifragilisticexpialidocious/</id>
+        <title>Word of the day No.1 - Supercalifragilisticexpialidocious</title>
+        <link rel="alternate" href="https://lolicon.wtf/2025/01/01/english/supercalifragilisticexpialidocious/"/>
+        <content type="html">&lt;h1 id=&#34;supercalifragilisticexpialidocious-ˌsuːpəkalɪˌfradʒɪlɪstɪkˌɛkspɪalɪˈdəʊʃəs-adj&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#supercalifragilisticexpialidocious-ˌsuːpəkalɪˌfradʒɪlɪstɪkˌɛkspɪalɪˈdəʊʃəs-adj&#34;&gt;#&lt;/a&gt; supercalifragilisticexpialidocious /ˌsuːpəkalɪˌfradʒɪlɪstɪkˌɛkspɪalɪˈdəʊʃəs/ adj.  ★★★★☆&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Supercalifragilisticexpialidocious&lt;/strong&gt; is a made-up word that gained fame through the 1964 Disney musical film &lt;em&gt;Mary Poppins&lt;/em&gt;. It was sung by Julie Andrews and Dick Van Dyke in the song of the same name. The songwriters, the Sherman Brothers (Richard and Robert Sherman), created this whimsical word to evoke a sense of fun and wonder. It encapsulates the magical and extraordinary nature of the character Mary Poppins and the world she inhabits.&lt;/p&gt;
+&lt;h3 id=&#34;early-references-and-coinage&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#early-references-and-coinage&#34;&gt;#&lt;/a&gt; Early References and Coinage&lt;/h3&gt;
+&lt;p&gt;Although &lt;strong&gt;supercalifragilisticexpialidocious&lt;/strong&gt; is most widely recognized from &lt;em&gt;Mary Poppins&lt;/em&gt;, there are claims that the word was in use before the movie&#39;s release. In fact, in a 1949 edition of the Syracuse University newspaper, the word &lt;strong&gt;supercaliflawjalisticeexpialadoshus&lt;/strong&gt; appeared, with a similar meaning of something fantastic and overwhelming.&lt;/p&gt;
+&lt;p&gt;The Sherman Brothers, however, crafted their unique version, ensuring it rolled off the tongue in a memorable and musical way. The word’s creation involved many playful and iterative changes, settling on a version that audiences would find delightful and singable.&lt;/p&gt;
+&lt;h2 id=&#34;breaking-down-the-word&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#breaking-down-the-word&#34;&gt;#&lt;/a&gt; Breaking Down the Word&lt;/h2&gt;
+&lt;p&gt;While it may seem like a jumble of letters, &lt;strong&gt;supercalifragilisticexpialidocious&lt;/strong&gt; can be broken down into parts that give it meaning:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Super&lt;/strong&gt;: Above or beyond&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cali&lt;/strong&gt;: Beauty&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fragilistic&lt;/strong&gt;: Delicate or fragile&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Expiali&lt;/strong&gt;: To atone or make amends&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Docious&lt;/strong&gt;: Educable or able to learn&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When combined, these parts form a word that roughly translates to &amp;quot;Atoning for being very delicate and educable&amp;quot;—though, of course, it was intended more for its playful sound than its literal meaning. This playful construction speaks to the joy of language and the power of words to create a sense of wonder.&lt;/p&gt;
+&lt;h2 id=&#34;cultural-impact&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cultural-impact&#34;&gt;#&lt;/a&gt; Cultural Impact&lt;/h2&gt;
+&lt;p&gt;The word has transcended its origins in &lt;em&gt;Mary Poppins&lt;/em&gt; to become a part of popular culture. It&#39;s often used to describe something fantastical, extraordinary, or just plain fun. Its quirky, elongated form makes it memorable and unique, making appearances in various media, including books, TV shows, and even as a term in everyday language.&lt;/p&gt;
+&lt;h3 id=&#34;in-media-and-entertainment&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#in-media-and-entertainment&#34;&gt;#&lt;/a&gt; In Media and Entertainment&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Supercalifragilisticexpialidocious&lt;/strong&gt; has appeared in numerous other contexts beyond &lt;em&gt;Mary Poppins&lt;/em&gt;. It has been referenced in television shows like &lt;em&gt;The Simpsons&lt;/em&gt; and &lt;em&gt;Family Guy&lt;/em&gt;, used in advertising campaigns, and even incorporated into other musical performances. Its catchy and whimsical nature ensures that it remains a beloved term in various forms of entertainment.&lt;/p&gt;
+&lt;h3 id=&#34;academic-and-linguistic-analysis&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#academic-and-linguistic-analysis&#34;&gt;#&lt;/a&gt; Academic and Linguistic Analysis&lt;/h3&gt;
+&lt;p&gt;Linguists and language enthusiasts have analyzed the word for its construction and have found it to be an excellent example of how English can create new words through compounding and affixation. The word showcases the flexibility of English and how it can adapt and grow to accommodate new ideas and expressions.&lt;/p&gt;
+&lt;h2 id=&#34;usage-and-pronunciation&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#usage-and-pronunciation&#34;&gt;#&lt;/a&gt; Usage and Pronunciation&lt;/h2&gt;
+&lt;p&gt;Despite its length, &lt;strong&gt;supercalifragilisticexpialidocious&lt;/strong&gt; is surprisingly easy to pronounce once you get the hang of it:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Soo-per-cali-fragil-istic-expi-ali-docious&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The word&#39;s rhythm and melody make it a joy to say, and it often brings smiles and laughter when spoken aloud.&lt;/p&gt;
+&lt;h3 id=&#34;teaching-and-learning-with-the-word&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#teaching-and-learning-with-the-word&#34;&gt;#&lt;/a&gt; Teaching and Learning with the Word&lt;/h3&gt;
+&lt;p&gt;&amp;quot;Supercalifragilisticexpialidocious&amp;quot; is often used in educational contexts to teach about word formation, the fun of language, and the importance of creativity in communication. Teachers use the word to engage students in discussions about language, encouraging them to invent their own playful terms and explore the meanings and sounds of words.&lt;/p&gt;
+&lt;h2 id=&#34;fun-facts&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#fun-facts&#34;&gt;#&lt;/a&gt; Fun Facts&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Guinness World Record&lt;/strong&gt;: The word was once recognized by Guinness World Records as the longest word in English, although other longer words have since taken its place.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mary Poppins Revival&lt;/strong&gt;: The 2018 film &lt;em&gt;Mary Poppins Returns&lt;/em&gt; brought renewed interest in the word and the original film, introducing it to a new generation of fans.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Lexical Analysis&lt;/strong&gt;: Scholars have explored the construction of the word, noting its blend of Latin and Greek roots, affixes, and the clever use of linguistic play.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;extended-cultural-influence&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#extended-cultural-influence&#34;&gt;#&lt;/a&gt; Extended Cultural Influence&lt;/h2&gt;
+&lt;p&gt;Beyond its appearances in media and entertainment, &lt;strong&gt;supercalifragilisticexpialidocious&lt;/strong&gt; has also made its mark in other areas:&lt;/p&gt;
+&lt;h3 id=&#34;literature-and-writing&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#literature-and-writing&#34;&gt;#&lt;/a&gt; Literature and Writing&lt;/h3&gt;
+&lt;p&gt;Authors and poets often refer to the word in their works to convey a sense of extravagance or whimsy. Its usage has inspired creative writing, poetry, and even academic papers discussing the impact of invented words on language and culture.&lt;/p&gt;
+&lt;h3 id=&#34;business-and-marketing&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#business-and-marketing&#34;&gt;#&lt;/a&gt; Business and Marketing&lt;/h3&gt;
+&lt;p&gt;The word has been used in branding and marketing to evoke a sense of novelty and excitement. Companies have leveraged its playful nature in advertisements, slogans, and product names to capture consumers&#39; attention and create memorable impressions.&lt;/p&gt;
+&lt;h3 id=&#34;internet-and-memes&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#internet-and-memes&#34;&gt;#&lt;/a&gt; Internet and Memes&lt;/h3&gt;
+&lt;p&gt;In the digital age, &lt;strong&gt;supercalifragilisticexpialidocious&lt;/strong&gt; has found a new life in memes and online content. It often appears in humorous contexts, social media posts, and viral videos, further cementing its status as a word that brings joy and laughter.&lt;/p&gt;
+&lt;h2 id=&#34;linguistic-significance&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#linguistic-significance&#34;&gt;#&lt;/a&gt; Linguistic Significance&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Supercalifragilisticexpialidocious&lt;/strong&gt; exemplifies the dynamic and evolving nature of language. It illustrates how new words can be created, adopted, and integrated into everyday use. The word also highlights the interplay between language and culture, showing how linguistic innovation can reflect societal values, trends, and creativity.&lt;/p&gt;
+&lt;h3 id=&#34;phonetic-appeal&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#phonetic-appeal&#34;&gt;#&lt;/a&gt; Phonetic Appeal&lt;/h3&gt;
+&lt;p&gt;The phonetic structure of &lt;strong&gt;supercalifragilisticexpialidocious&lt;/strong&gt; contributes to its charm. The repetition of syllables, the interplay of consonants and vowels, and the rhythmic flow make it pleasant to hear and speak. Its phonetic appeal is a key factor in its lasting popularity and cultural impact.&lt;/p&gt;
+&lt;h3 id=&#34;educational-value&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#educational-value&#34;&gt;#&lt;/a&gt; Educational Value&lt;/h3&gt;
+&lt;p&gt;Educators use &lt;strong&gt;supercalifragilisticexpialidocious&lt;/strong&gt; as a tool to teach language concepts, such as syllable division, phonetics, and word formation. Its playful nature makes learning fun and engaging, helping students to develop a love for language and an appreciation for linguistic creativity.&lt;/p&gt;
+&lt;h2 id=&#34;prologue&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#prologue&#34;&gt;#&lt;/a&gt; Prologue&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Supercalifragilisticexpialidocious&lt;/strong&gt; is more than just a tongue twister; it&#39;s a testament to the creativity and playfulness of the English language. It brings joy, whimsy, and a bit of magic to those who encounter it. Whether you&#39;re singing along to the iconic song or using it to describe something wonderfully fantastical, this word has cemented its place in the hearts and minds of people all over the world.&lt;/p&gt;
+&lt;p&gt;Its enduring legacy is a reminder that language is not just a tool for communication but a source of joy, creativity, and endless fascination. So the next time you encounter something truly extraordinary, remember that you have a word as magical as &lt;strong&gt;supercalifragilisticexpialidocious&lt;/strong&gt; to describe it 😄&lt;/p&gt;
+</content>
+        <category term="Word of the day" scheme="https://lolicon.wtf/categories/Word-of-the-day/" />
+        <category term="English" scheme="https://lolicon.wtf/categories/Word-of-the-day/english/" />
+        <category term="english" scheme="https://lolicon.wtf/tags/english/" />
+        <updated>2025-01-01T17:40:12.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://lolicon.wtf/2024/12/31/casual/omisoka/</id>
+        <title>おおみそか 有感</title>
+        <link rel="alternate" href="https://lolicon.wtf/2024/12/31/casual/omisoka/"/>
+        <content type="html">&lt;div class=&#34;note info&#34;&gt;
+&lt;p&gt;本文大部分內容均由人工智能助理生成&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;一年一度的除夕，總是帶著濃濃的年味和家的溫暖。對於許多人來說，除夕不僅為每一年的最後一天，更是告別過去、迎接未來希望的象徵。&lt;/p&gt;
+&lt;h2 id=&#34;團聚的時刻&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#團聚的時刻&#34;&gt;#&lt;/a&gt; 團聚的時刻&lt;/h2&gt;
+&lt;p&gt;新年除夕的核心是「團聚」。無論身在何處，人們總是盡可能與家人或朋友相聚，共度這特別的一夜。無論是與親人共享溫馨的家庭晚宴，還是與朋友舉杯歡慶，這一天的重點都在於聯繫彼此，創造珍貴的回憶。&lt;/p&gt;
+&lt;p&gt;餐桌上的美食成為慶祝的焦點，無論是象徵幸福的菜餚、甜點，還是手中的香檳，每一口都寄託著對新年的美好願望。隨著夜晚的推進，大家分享過去一年的點點滴滴，無論是成功還是挑戰，都成為連結彼此的重要話題。&lt;/p&gt;
+&lt;h2 id=&#34;倒數的魔力&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#倒數的魔力&#34;&gt;#&lt;/a&gt; 倒數的魔力&lt;/h2&gt;
+&lt;p&gt;除夕夜最令人期待的時刻莫過於午夜的倒數。無論是在城市廣場、派對現場，還是家中的電視機前，全球各地的人們都用心參與這一刻的儀式感。&lt;/p&gt;
+&lt;p&gt;「10！ 9！ 8！...」&lt;/p&gt;
+&lt;p&gt;倒數最後十秒響起時，心中充滿了期待、興奮與團結。&lt;/p&gt;
+&lt;p&gt;午夜的時刻到來，新年的煙火點亮夜空，象徵著嶄新的開始。人們相擁祝福，親朋好友互道「新年快樂！」，這一刻充滿了希望與溫暖。&lt;/p&gt;
+&lt;h2 id=&#34;定立目標與新希望&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#定立目標與新希望&#34;&gt;#&lt;/a&gt; 定立目標與新希望&lt;/h2&gt;
+&lt;p&gt;新年除夕不僅僅是歡慶的日子，也是反思的好時機。它提醒我們停下腳步，回顧過去一年的收穫與教訓，並且為新的一年設定新的目標。無論是追求健康的生活方式、學習新的技能，還是實現長久以來的夢想，新年的到來總讓人充滿幹勁。&lt;/p&gt;
+&lt;p&gt;這些目標與決心無論大小，都是我們邁向更好自己的開始。除夕夜的熱鬧氣氛，總能激勵我們相信未來充滿無限可能。&lt;/p&gt;
+&lt;h2 id=&#34;展望未來&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#展望未來&#34;&gt;#&lt;/a&gt; 展望未來&lt;/h2&gt;
+&lt;p&gt;除夕不僅僅是一場慶典，更是反思與感恩的時刻。它提醒我們珍惜身邊的人，感謝過去的成長，同時對未來充滿希望。這一天是一個新的起點，為我們帶來信心與勇氣，迎接即將到來的一切。&lt;/p&gt;
+&lt;p&gt;願新的一年，為你帶來幸福、健康與成功。讓我們滿懷希望地邁向未來，並努力實現我們的夢想！&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;2025 新年快樂！🎆&lt;/p&gt;
+&lt;h2 id=&#34;後記-2025-年更新&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#後記-2025-年更新&#34;&gt;#&lt;/a&gt; 後記 (2025 年更新)&lt;/h2&gt;
+&lt;p&gt;新的一年，象徵住一個新的開始。在此願諸位事事順心，確立目標並付諸實行 💪&lt;/p&gt;
+</content>
+        <category term="隨筆" scheme="https://lolicon.wtf/categories/casual/" />
+        <category term="除夕" scheme="https://lolicon.wtf/tags/%E9%99%A4%E5%A4%95/" />
+        <category term="隨筆" scheme="https://lolicon.wtf/tags/%E9%9A%A8%E7%AD%86/" />
+        <category term="雜談" scheme="https://lolicon.wtf/tags/%E9%9B%9C%E8%AB%87/" />
+        <updated>2024-12-31T08:40:15.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://lolicon.wtf/2024/12/31/test2/</id>
+        <title>Hello World 3</title>
+        <link rel="alternate" href="https://lolicon.wtf/2024/12/31/test2/"/>
+        <content type="html">&lt;p&gt;Welcome to &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
+&lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo new &lt;span class=&#34;token string&#34;&gt;&#34;My New Post&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/writing.html&#34;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;run-server&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#run-server&#34;&gt;#&lt;/a&gt; Run server&lt;/h3&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo server&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/server.html&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;generate-static-files&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#generate-static-files&#34;&gt;#&lt;/a&gt; Generate static files&lt;/h3&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo generate&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/generating.html&#34;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo deploy&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+</content>
+        <category term="about" scheme="https://lolicon.wtf/categories/about/" />
+        <updated>2024-12-31T08:40:13.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://lolicon.wtf/2024/12/31/hello-world/</id>
+        <title>Hello World</title>
+        <link rel="alternate" href="https://lolicon.wtf/2024/12/31/hello-world/"/>
+        <content type="html">&lt;div class=&#34;hbe hbe-container&#34; id=&#34;hexo-blog-encrypt&#34; data-wpm=&#34;Oh, this is an invalid password. Check and try again, please.&#34; data-whm=&#34;Oh, these decrypted content cannot be verified, but you can still have a look.&#34;&gt;
+  &lt;script id=&#34;hbeData&#34; type=&#34;hbeData&#34; data-hmacdigest=&#34;39249492d31b91dce5e3e58404a320905940206e2dbb964c281eb5a533da45c5&#34;&gt;3a325dc39ad404746d7c8526f2f7a0827d8078926b01ce53c2e5975ff68006c93eb6e3ac0d54e97e9c442ab23d3522c3b82eabde7218cd9431dfa8d0e9452b7576215aa9ceb4a3585ee202f414b2e94fa9c9164bcb0d00850a640cc3909295943dac4801777936b833a931634d28782f650e8c42a0a6ec71353da3c0ce76ce0dab1e9b5320d13feb6e336dbbdd5da8bbcc87ffeae266dd503ae1cc16abb57606033236aa3429537c6519565fd7379b201a83070e3208616c96fd7f35b87f458ef7285f452c994742dcb6614872765df353fefcc2edbbe1ebb1e7d96b7b4ce3fc78974b28b09b389df8ac03a91b489e1408db353ead2f57b3855f1ed9cf0d7b780256cdbf1cf2e62a6035672f85a80e60f7c2bffcf4d0ef3a8f422ee7895792b91400aa30925dacb49851be36815ecea1509cf68bedccb2da23aa20b57b98a52aebd23ecdf79ce9b56588044a72ca45a84a7acb817647e4cc47c64848e05da817f425bca9d1b44c07a0721cfa56df64e2c636e256785b6ee18ac073da22623836fcb11913d579291ecfb882160a16bbb133450f348c0b0ad8666c8457ec53e54f2638869d030d686308a550e0db18dd510dab343ae9a38de5aa9def038694ea35583afa107372ef4a701a3e60acd80a3bd9d14f7391221380f86a74469cd2acd598aef6709077c0d3ae51e074894258652de97919813bf5310da48cf5e44cfb8cb6097fcf4b04084001c01221da7fd6ace48599837b7c3eef58d1f28d03253506d476c84a06ba593c014b9f6ec97aeebf1afa1a69020a5d8ed673a6b35774ad9b4bd47a41dd99d1c17960a1f8c96c1505160f38a61532dcd71d12acaf90dfde30c832c1a5f53623551715a2c2ad963eeea4d30eef3fa61734224bfae8101e3ffdf42f23a26ffd1f0ed326beeffe7d313ec6d70ff0bcf5a8a20ea1df42711f0f0fffee6096f94633ea3e25fc9ccc4630c792e597c85e05bf05cf00cff66e1edf4fbe80e10b8d3f3a7e05688a6522eb8a543fa2322db98353733a846fe4138ef2d29493dfd54d4254ac7ef844f74fb7e9cab0fe57c0e20a3708cc0ada01c83f3262656e0758fb1c3b97218fa914101e2a87871634dff54c83ffad9ca48838188752162a56254153bdf8dddc6ba4567373e35316ee0914ab6c211455b67ab0bbb544535831f0c5c014e87dd3fbc7d5885945ea88a8e8113228336198fb6e532277be5b1fea486ca505396314b8ceec6886233b00fb368dc82654ffc6d5b84e7692759839253a148838548861fc16d9e931df9a66a6568af323041fd16257533d6d40f4a2f89bf58d25c5bf553ba4c6abb1ffbaa572ef1fd6dcecc3eef5676ac9ba5a928ec4f685c2bbd64850d5e12980745c194b5fa1f5db52afaea38d2d77a062bd4182fa0a1c8686e179a1c6f3be18c91ec6acfbefa28f6af4ac93614c1431d6076d06d8b962268271e8e08cfa7cd505c8906a7472f71840e15af509f2f4f6f5f28c5136cdaba7d733ba64d8dbb08eecc533ab060465c2dd14f1d721a514d357729959131b1ff12f512178ddfcd267bb33bf011fa63a37d9a0f3d31448dab3fd907ce0122797ed0776d38e3564445ae9334e9c786d69c0cafa11ec4c8b7c87f68905d20c976941125bbe0b63e55cf2eae029df9a8570584896de4d2a61d2ab24a6eb198a7494ab615d3d4257c2791f05a4accfe03c34eb4c297c098a3d73dcbe71c0b7c11d9791128518d5fc40df9fe6f930ff65cb7e62f3f5def6062d0e175f3305d7a03004f6ac04407df6c480fe5c3838406bce1c0f1678da2109fbe6973c52ee309a4064aac4b3bb25487585eaf0806d46b13e693e31298e71635bca354f1eb0bd2d1f516d2458c3907f6d760bd1dbba58363241dc4414e0e79e52c68cfef201ab8f19132f4c834bdeb31821ab5de02c9abc568adad57ab3fcc3d5c53ec7ea5d276d964975f799362f7dd946a25f075c2e57b78f8191a09bb87c38a68eae3b3422b8019077f6a1ced7b35c5ff552f4112cea2eb5f7de98f623187b01619e16c11ba6c047ce74d65ce5aab05bd95751502baa3ba93539986efe6922f8686d9454788a11acef223751bd55fa66c0e82b04fffc743d9ac70a35ab83e34862c67ac4264fa3c288fc04de1f09c87c952cb7e8299f82de7a60c4c80cef2d1e798899aceba2c277706c4cf8af2917796efc7f8acece760470110e57bf34344659fc86c71bcc35b048a6d617a0f8c6eee36f6b170a7f8dc1d565fa61111b6c5d61b7849d692dc174ad1af33c24b565280c82e28fd83f8f2a30955c7b183e1948f947133492e9233001a3da69210030ea5518f43bc24127458c8321e283552679c8de9530f2827448e36d4446d5405880079da0b3dce96b71bf917938857493b8db5a4c54314e1cd3279f678521fe4a539482df421913207cbd302d2714c21f1fa8ad8075142779fcf5772d7df1d724b5a340bade83295698ba2894176c4a3d19eb007888d19f0ed6260db77ea62bc3c4251d73ca96446f3aa710e8745c7de25b1b9da0e7e0a1102eaf3fbefd537285bfd962a19ebaca6948f7a56010f6153505737c4ee5174c768fe5f071ed2e0a414238f35f83f5707b5509b29405556a41726ef629b86dabfd6f751f3bb1c867f43c587d214a0053514caa9a05a6ecd7ca76b82c55890cc8a40362434ebc0296178c1c6e6d64baccdbfc86a17eb93ecc2f7aca66549e7c4c549ad11a0a8a8094bfacd4b7088bea2b777362da69e98c73d96f9405272db41cfa30fd9f11280075caf58225ab0d721628e50404e88def62b26cf3d3619d05cc769be939b832ee8808fce9761c72c0f30dddb48e4f54065c51ca22494b&lt;/script&gt;
+  &lt;div class=&#34;hbe hbe-content&#34;&gt;
+    &lt;div class=&#34;hbe hbe-input hbe-input-shrink&#34;&gt;
+      &lt;input class=&#34;hbe hbe-input-field hbe-input-field-shrink&#34; type=&#34;password&#34; id=&#34;hbePass&#34;&gt;
+      &lt;label class=&#34;hbe hbe-input-label hbe-input-label-shrink&#34; for=&#34;hbePass&#34;&gt;
+        &lt;span class=&#34;hbe hbe-input-label-content hbe-input-label-content-shrink&#34;&gt;Welcome to my blog, enter password to read.&lt;/span&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script data-pjax src=&#34;/lib/hbe.js&#34;&gt;&lt;/script&gt;&lt;link href=&#34;/css/hbe.style.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt;</content>
+        <updated>2024-12-31T08:40:12.000Z</updated>
+    </entry>
+</feed>
