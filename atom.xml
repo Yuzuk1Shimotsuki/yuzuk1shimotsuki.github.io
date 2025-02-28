@@ -10,9 +10,9 @@
     </author>
     <updated>2025-02-24T13:09:11.000Z</updated>
     <entry>
-        <id>https://lolicon.wtf/2025/02/24/computer-science/linux-xrdp/</id>
+        <id>https://lolicon.wtf/posts/computer-science/linux-xrdp/</id>
         <title>什麼? Linux 也能用RDP?</title>
-        <link rel="alternate" href="https://lolicon.wtf/2025/02/24/computer-science/linux-xrdp/"/>
+        <link rel="alternate" href="https://lolicon.wtf/posts/computer-science/linux-xrdp/"/>
         <content type="html">&lt;p&gt;對，你沒聽錯，我們平常在 Windows 上用的遠端桌面在 Linux 原來也能通過一些插件實現。到底是什麼插件如此強大呢？這裏便不多賣關子了&lt;/p&gt;
 &lt;p&gt;今天就和大家聊聊如何在 Linux 安裝和配置 Xrdp 服務器，以及一些可能會遇到的問題和解決方法&lt;/p&gt;
 &lt;h1 id=&#34;什麼是-xrdp&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什麼是-xrdp&#34;&gt;#&lt;/a&gt; 什麼是 Xrdp？&lt;/h1&gt;
@@ -40,7 +40,8 @@
 &lt;p&gt;我們先打開  &lt;code&gt;/etc/xrdp/xrdp.ini&lt;/code&gt;&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;nano&lt;/span&gt; /etc/xrdp/xrdp.ini&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;然後在裏面找到  &lt;code&gt;port=3389&lt;/code&gt;&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;Globals&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; xrdp.ini &lt;span class=&#34;token function&#34;&gt;file&lt;/span&gt; version number&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token assign-left variable&#34;&gt;ini_version&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; fork a new process &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; each incoming connection&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token assign-left variable&#34;&gt;fork&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;true&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; ports to listen on, number alone means listen on all interfaces&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0.0&lt;/span&gt;.0.0 or :: &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; ipv6 is configured&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; space between multiple occurrences&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; ALL specified interfaces must be UP when xrdp starts, otherwise xrdp will fail to start&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; Examples:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3389&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;unix://./tmp/xrdp.socket&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp://.:3389                           &lt;span class=&#34;token number&#34;&gt;127.0&lt;/span&gt;.0.1:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp://:3389                            *:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp://&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;any ipv4 &lt;span class=&#34;token function&#34;&gt;format&lt;/span&gt; addr&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;:3389      &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.1.1:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp6://.:3389                          ::1:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp6://:3389                           *:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp6://&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;any ipv6 &lt;span class=&#34;token function&#34;&gt;format&lt;/span&gt; addr&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;:3389   &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;FC00:0:0:0:0:0:0:1&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;vsock://&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;cid&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;:&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;port&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3389&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;port&#39;&lt;/span&gt; above should be connected to with vsock instead of tcp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; use this only with number alone &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; port above&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; prefer use vsock://&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;cid&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;:&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;port&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; above&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token assign-left variable&#34;&gt;use_vsock&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;false&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;並把它更改為你想要且未被佔用的端口&lt;/p&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; Examples:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3389&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;unix://./tmp/xrdp.socket&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp://.:3389                           &lt;span class=&#34;token number&#34;&gt;127.0&lt;/span&gt;.0.1:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp://:3389                            *:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp://&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;any ipv4 &lt;span class=&#34;token function&#34;&gt;format&lt;/span&gt; addr&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;:3389      &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.1.1:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp6://.:3389                          ::1:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp6://:3389                           *:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp6://&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;any ipv6 &lt;span class=&#34;token function&#34;&gt;format&lt;/span&gt; addr&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;:3389   &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;FC00:0:0:0:0:0:0:1&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;vsock://&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;cid&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;:&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;port&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; YOUR PORT&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;最後儲存並輸入以下指令來重新啟動 Xrdp，讓變更生效&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; Examples:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3389&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;unix://./tmp/xrdp.socket&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp://.:3389                           &lt;span class=&#34;token number&#34;&gt;127.0&lt;/span&gt;.0.1:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp://:3389                            *:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp://&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;any ipv4 &lt;span class=&#34;token function&#34;&gt;format&lt;/span&gt; addr&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;:3389      &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.1.1:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp6://.:3389                          ::1:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp6://:3389                           *:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;tcp6://&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;any ipv6 &lt;span class=&#34;token function&#34;&gt;format&lt;/span&gt; addr&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;:3389   &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;FC00:0:0:0:0:0:0:1&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;:3389&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;vsock://&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;cid&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;:&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;port&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token assign-left variable&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; YOUR PORT&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;按 &lt;span class=&#34;kbd&#34;&gt;Ctrl&lt;/span&gt; + &lt;span class=&#34;kbd red&#34;&gt;X&lt;/span&gt; ，輸入  &lt;code&gt;y&lt;/code&gt;  /  &lt;code&gt;yes&lt;/code&gt;  並按 &lt;span class=&#34;kbd&#34;&gt;Enter&lt;/span&gt; 儲存&lt;/p&gt;
+&lt;p&gt;最後輸入以下指令來重新啟動 Xrdp，讓變更生效&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; systemctl restart xrdp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;如果你有啟用防火牆的話，記得更新一下允許新的端口。否則無法連線喔～&lt;/p&gt;
 &lt;/div&gt;
@@ -49,19 +50,19 @@
 &lt;ol&gt;
 &lt;li&gt;如連線至 Windows 般打開遠端桌面 (Remote Desktop) 並填寫主機 IP 或域名，然後按「連接」 (Connect)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/24/computer-science/linux-xrdp/xrdp1.png&#34; class=&#34;&#34; title=&#34;Connecting to Linux Xrdp 1&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/linux-xrdp/xrdp1.png&#34; class=&#34;&#34; title=&#34;Connecting to Linux Xrdp 1&#34;&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;假如出現憑證警告，按「是」 (Yes) 繼續&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/24/computer-science/linux-xrdp/xrdp2.png&#34; class=&#34;&#34; title=&#34;Connecting to Linux Xrdp 2&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/linux-xrdp/xrdp2.png&#34; class=&#34;&#34; title=&#34;Connecting to Linux Xrdp 2&#34;&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;輸入目標主機的用戶名稱 (Username) 和密碼 (Password) ，完成後請按 &lt;span class=&#34;label&#34;&gt;Login&lt;/span&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/24/computer-science/linux-xrdp/xrdp3.png&#34; class=&#34;&#34; title=&#34;Connecting to Linux Xrdp 3&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/linux-xrdp/xrdp3.png&#34; class=&#34;&#34; title=&#34;Connecting to Linux Xrdp 3&#34;&gt;
 &lt;ol start=&#34;4&#34;&gt;
 &lt;li&gt;倘若沒問題的話，恭喜你！你已經成功安裝和設置 Xrdp 了，盡情享受吧！&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/24/computer-science/linux-xrdp/xrdp4.png&#34; class=&#34;&#34; title=&#34;Connecting to Linux Xrdp 4&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/linux-xrdp/xrdp4.png&#34; class=&#34;&#34; title=&#34;Connecting to Linux Xrdp 4&#34;&gt;
 &lt;p&gt;假若無法連上主機，或是連接後在某部份出現異常的話，該怎樣辦？沒關係。請繼續看下去&lt;/p&gt;
 &lt;h1 id=&#34;疑難排解&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#疑難排解&#34;&gt;#&lt;/a&gt; 疑難排解&lt;/h1&gt;
 &lt;h2 id=&#34;無法識別主機&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#無法識別主機&#34;&gt;#&lt;/a&gt; 無法識別主機&lt;/h2&gt;
@@ -76,25 +77,27 @@
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;service&lt;/span&gt; xrdp stop&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;然後編輯 Xrdp 啟動腳本&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;nano&lt;/span&gt; /etc/xrdp/startwm.sh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;把腳本內的以下幾行&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;test&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-x&lt;/span&gt; /etc/X11/Xsession &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;exec&lt;/span&gt; /etc/X11/Xsession&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;exec&lt;/span&gt; /bin/sh /etc/X11/Xsession&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;更改為&lt;/p&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@obsolete)startxfce4&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/startplasma-x11&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;最後儲存並輸入以下指令來重新啟動 Xrdp 便可&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@obsolete)startxfce4&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/startplasma-x11&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;按 &lt;span class=&#34;kbd&#34;&gt;Ctrl&lt;/span&gt; + &lt;span class=&#34;kbd red&#34;&gt;X&lt;/span&gt; ，輸入  &lt;code&gt;y&lt;/code&gt;  /  &lt;code&gt;yes&lt;/code&gt;  並按 &lt;span class=&#34;kbd&#34;&gt;Enter&lt;/span&gt; 儲存&lt;/p&gt;
+&lt;p&gt;最後輸入以下指令來重新啟動 Xrdp 便可&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;service&lt;/span&gt; xrdp start&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;在-kde-中無法移動或調整視窗大小&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#在-kde-中無法移動或調整視窗大小&#34;&gt;#&lt;/a&gt; 在 KDE 中無法移動或調整視窗大小&lt;/h2&gt;
 &lt;p&gt;我們在 terminal 中輸入以下指令&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;service&lt;/span&gt; xrdp stop&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;並編輯 Xrdp 啟動腳本&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;nano&lt;/span&gt; /etc/xrdp/startwm.sh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在腳本底下新增以下內容&lt;/p&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@obsolete)killall kwin&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;killall&lt;/span&gt; kwin_x11&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@obsolete)kwrapper kwin -replace &amp;amp;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kwrapper5 kwin_x11 &lt;span class=&#34;token parameter variable&#34;&gt;--replace&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;最後儲存並輸入以下指令來重新啟動 Xrdp 便可&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@obsolete)killall kwin&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;killall&lt;/span&gt; kwin_x11&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@obsolete)kwrapper kwin -replace &amp;amp;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kwrapper5 kwin_x11 &lt;span class=&#34;token parameter variable&#34;&gt;--replace&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;按 &lt;span class=&#34;kbd&#34;&gt;Ctrl&lt;/span&gt; + &lt;span class=&#34;kbd red&#34;&gt;X&lt;/span&gt; ，輸入  &lt;code&gt;y&lt;/code&gt;  /  &lt;code&gt;yes&lt;/code&gt;  並按 &lt;span class=&#34;kbd&#34;&gt;Enter&lt;/span&gt; 儲存&lt;/p&gt;
+&lt;p&gt;最後輸入以下指令來重新啟動 Xrdp 便可&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;service&lt;/span&gt; xrdp start&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;kde-內沒有桌面只顯示黑畫面&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#kde-內沒有桌面只顯示黑畫面&#34;&gt;#&lt;/a&gt; KDE 內沒有桌面，只顯示黑畫面&lt;/h2&gt;
 &lt;p&gt;這問題在 KDE 中也算常見，其解決方法並不複雜&lt;/p&gt;
 &lt;p&gt;先同樣地在 terminal 中輸入以下指令&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;service&lt;/span&gt; xrdp stop&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;並編輯 Xrdp 啟動腳本&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;nano&lt;/span&gt; /etc/xrdp/startwm.sh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在腳本底下新增以下內容&lt;/p&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@Obsolete)killall plasma-desktop&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@Obsolete)kstart plasma-desktop&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@Obsolete)killall plasmashell #to stop it&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@Obsolete)kstart plasmashell #to restart it&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kquitapp5 plasmashell&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kstart5 plasmashell&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;最後儲存並輸入以下指令來重新啟動 Xrdp 便可&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@Obsolete)killall plasma-desktop&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@Obsolete)kstart plasma-desktop&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@Obsolete)killall plasmashell #to stop it&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#(@Obsolete)kstart plasmashell #to restart it&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kquitapp5 plasmashell&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;kstart5 plasmashell&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;按 &lt;span class=&#34;kbd&#34;&gt;Ctrl&lt;/span&gt; + &lt;span class=&#34;kbd red&#34;&gt;X&lt;/span&gt; ，輸入  &lt;code&gt;y&lt;/code&gt;  /  &lt;code&gt;yes&lt;/code&gt;  並按 &lt;span class=&#34;kbd&#34;&gt;Enter&lt;/span&gt; 儲存&lt;/p&gt;
+&lt;p&gt;最後輸入以下指令來重新啟動 Xrdp 便可&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;service&lt;/span&gt; xrdp start&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;結語&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#結語&#34;&gt;#&lt;/a&gt; 結語&lt;/h1&gt;
 &lt;p&gt;想不到 Linux 還有這樣的連接方式啊，博主也是最近才知道.......&lt;/p&gt;
 &lt;p&gt;看到這裏，想必各位應該 GET 到一些新技能了吧&lt;/p&gt;
 &lt;p&gt;不過在這裏提醒大家，在享受 Xrdp 帶來的便利時，也請謹記做好網絡保安。&lt;/p&gt;
-&lt;p&gt;現時&lt;a href=&#34;https://www.google.com/search?q=%E9%81%A0%E7%AB%AF%E9%80%A3%E6%8E%A5%E9%A8%99%E5%B1%80&#34;&gt;遠端連接騙局&lt;/a&gt;極為普遍，切忌肆意讓其他人士存取你的主機。相信沒人願意成為下一位被騙的受害者吧 XD&lt;/p&gt;
+&lt;p&gt;現時&lt;a href=&#34;https://www.google.com/search?q=%E9%81%A0%E7%AB%AF%E9%80%A3%E6%8E%A5%E9%A8%99%E5%B1%80&#34;&gt;遠端連接騙局&lt;/a&gt;極為普遍，切忌讓其他人士肆意存取你的主機。相信沒人願意成為下一位被騙的受害者吧 XD&lt;/p&gt;
 &lt;p&gt;最後，希望大家設置成功，為你的 Linux 主機打開新的大門！&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;如果本文對您有幫助，歡迎分享給更多朋友！&lt;/em&gt;&lt;/p&gt;
 </content>
         <category term="技術文" scheme="https://lolicon.wtf/categories/%E6%8A%80%E8%A1%93%E6%96%87/" />
         <category term="教學" scheme="https://lolicon.wtf/tags/%E6%95%99%E5%AD%B8/" />
@@ -107,9 +110,9 @@
         <updated>2025-02-24T13:09:11.000Z</updated>
     </entry>
     <entry>
-        <id>https://lolicon.wtf/2025/02/22/computer-science/tailscale-vpn/</id>
+        <id>https://lolicon.wtf/posts/computer-science/tailscale-vpn/</id>
         <title>還在路由器弄VPN？ 15分鐘帶你搞定Tailscale！</title>
-        <link rel="alternate" href="https://lolicon.wtf/2025/02/22/computer-science/tailscale-vpn/"/>
+        <link rel="alternate" href="https://lolicon.wtf/posts/computer-science/tailscale-vpn/"/>
         <content type="html">&lt;p&gt;在&lt;a href=&#34;https://lolicon.wtf/2025/01/19/computer-science/wake-on-lan/&#34;&gt;上一篇文章&lt;/a&gt;，博主提到如何在家中透過 Wake On LAN 來喚醒電腦。然而很多人可能會問，如果人在外面又該怎麼辦？&lt;/p&gt;
 &lt;p&gt;辨法倒是有的，例如 DDNS，或是固定 IP 等等 (下幾期會提到)。不過，這些方式雖說能夠解一時燃眉之急，卻無法保護您所傳輸的數據......&lt;/p&gt;
 &lt;p&gt;VPN 正是為此而誕生，但是，相信弄過 VPN 的都會明白，傳統的 OpenVPN 要在路由器上配置很多東西 (新款 TP-Link 路由器倒是把程序簡化了不少)......&lt;/p&gt;
@@ -173,30 +176,30 @@
 &lt;ol&gt;
 &lt;li&gt;前往 Google Play Store 搜尋 &lt;strong&gt;Tailscale&lt;/strong&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android1.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android1.jpg&#34; class=&#34;&#34;&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;安裝&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android2.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android2.jpg&#34; class=&#34;&#34;&gt;
 &lt;p&gt;並開啟 App&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android3.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android3.jpg&#34; class=&#34;&#34;&gt;
 &lt;/div&gt;&lt;/details&gt;
 &lt;details class=&#34;primary&#34;&gt;&lt;summary&gt;iOS&lt;/summary&gt;&lt;div&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;iOS/iPadOS&lt;/strong&gt;：前往 &lt;strong&gt;App Store&lt;/strong&gt; 搜尋 &lt;strong&gt;Tailscale&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;安裝&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup1.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup1.PNG&#34; class=&#34;&#34;&gt;
 &lt;p&gt;並開啟 App&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup2.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup2.PNG&#34; class=&#34;&#34;&gt;
 &lt;/div&gt;&lt;/details&gt;
 &lt;h2 id=&#34;step-3-連接至vpn&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#step-3-連接至vpn&#34;&gt;#&lt;/a&gt; Step 3: 連接至 VPN&lt;/h2&gt;
 &lt;h3 id=&#34;linux-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#linux-2&#34;&gt;#&lt;/a&gt; Linux&lt;/h3&gt;
 &lt;p&gt;安裝完成後，啟動並登入：&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; tailscale up&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;這時候應該會有一條連結顯示在 terminal 上，像醬&lt;/p&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;To authenticate, visit:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        https://login tailscale.com/a/&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;SOMETHING&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在瀏覽器中輸入該連結並完成登入流程，然後點擊「Connect」&lt;br /&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;To authenticate, visit:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        https://login.tailscale.com/a/&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;SOMETHING&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在瀏覽器中輸入該連結並完成登入流程，然後點擊「Connect」&lt;br /&gt;
 一切順利的話，terminal 會如下圖般顯示 &amp;quot;Success.&amp;quot;&lt;/p&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;To authenticate, visit:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        https://login tailscale.com/a/&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;SOMETHING&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Success.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;這樣便代表您的 Linux 設備已經成功連上 VPN 了。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;To authenticate, visit:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        https://login.tailscale.com/a/&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;SOMETHING&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Success.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;這樣便代表您的 Linux 設備已經成功連上 VPN 了。&lt;/p&gt;
 &lt;details class=&#34;primary&#34;&gt;&lt;summary&gt;Windows&lt;/summary&gt;&lt;div&gt;
 &lt;ol&gt;
 &lt;li&gt;點擊 &lt;strong&gt;「Log in」&lt;/strong&gt;（登入），使用剛剛註冊的帳號登入&lt;/li&gt;
@@ -214,52 +217,52 @@
 &lt;li&gt;開啟 Tailscale&lt;/li&gt;
 &lt;li&gt;完成初始化&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android4.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android4.jpg&#34; class=&#34;&#34;&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;點擊 「Connect」&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android5.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android5.jpg&#34; class=&#34;&#34;&gt;
 &lt;ol start=&#34;4&#34;&gt;
 &lt;li&gt;點擊 &lt;strong&gt;「Log in」&lt;/strong&gt;，並使用你的帳號登入。筆者這邊使用 GitHub 登入&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android6.jpg&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android7.jpg&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android8.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android6.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android7.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android8.jpg&#34; class=&#34;&#34;&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;在瀏覽器點擊 「Connect」&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android9.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android9.jpg&#34; class=&#34;&#34;&gt;
 &lt;ol start=&#34;4&#34;&gt;
 &lt;li&gt;看到以下畫面，即代表登入成功。請返回 Tailscale 應用程式繼續&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android10.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android10.jpg&#34; class=&#34;&#34;&gt;
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;假若跳出 Notifications 介面，請按照指示允許通知&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android11.jpg&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android12.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android11.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android12.jpg&#34; class=&#34;&#34;&gt;
 &lt;ol start=&#34;6&#34;&gt;
 &lt;li&gt;點擊畫面頂部開關，成功後設備將加入 VPN 🎉&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/android13.jpg&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/android13.jpg&#34; class=&#34;&#34;&gt;
 &lt;/div&gt;&lt;/details&gt;
 &lt;details class=&#34;primary&#34;&gt;&lt;summary&gt;iOS&lt;/summary&gt;&lt;div&gt;
 &lt;ol&gt;
 &lt;li&gt;開啟 Tailscale&lt;/li&gt;
 &lt;li&gt;按頁面指示完成初始化&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup3.PNG&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup4.PNG&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup5.PNG&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup6.PNG&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup7.PNG&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup8.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup3.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup4.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup5.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup6.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup7.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup8.PNG&#34; class=&#34;&#34;&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;點擊 &lt;strong&gt;「Log in」&lt;/strong&gt;，並使用你的帳號登入&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup9.PNG&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup10.PNG&#34; class=&#34;&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup11.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup9.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup10.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup11.PNG&#34; class=&#34;&#34;&gt;
 &lt;ol start=&#34;4&#34;&gt;
 &lt;li&gt;
 &lt;p&gt;授權 VPN 連線&lt;/p&gt;
@@ -268,7 +271,7 @@
 &lt;p&gt;點擊畫面頂部開關，成功後設備將加入 VPN 🎉&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/02/22/computer-science/tailscale-vpn/iOS_setup12.PNG&#34; class=&#34;&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/tailscale-vpn/iOS_setup12.PNG&#34; class=&#34;&#34;&gt;
 &lt;/div&gt;&lt;/details&gt;
 &lt;h2 id=&#34;step-4-使用-tailsacale-ip-連接你的設備&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#step-4-使用-tailsacale-ip-連接你的設備&#34;&gt;#&lt;/a&gt; Step 4: 使用 Tailsacale IP 連接你的設備&lt;/h2&gt;
 &lt;p&gt;現在，我們的所有裝置均已加入 &lt;strong&gt;Tailscale 網路&lt;/strong&gt;，只要透過 &lt;strong&gt;Tailscale IP&lt;/strong&gt; 便能把它們連接起來了！&lt;/p&gt;
@@ -299,7 +302,7 @@
 &lt;p&gt;搞定之後，你就可以直接輸入設備名稱來連線，像醬&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ssh&lt;/span&gt; user@home-server&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;是不是更方便了？&lt;/p&gt;
 &lt;h3 id=&#34;設置子網路路由subnet-routing&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#設置子網路路由subnet-routing&#34;&gt;#&lt;/a&gt; 設置子網路路由（Subnet Routing）&lt;/h3&gt;
-&lt;p&gt;我們也知道並不是所有設備皆能支援 Tailscale，難道說你能把 Tailscale 裝到電飯鍋上嗎 XD？&lt;br /&gt;
+&lt;p&gt;我們也知道並不是所有設備皆能支援 Tailscale，難道說你能把 Tailscale 裝到 &lt;a href=&#34;https://www.mi.com/hk/product/xiaomi-smart-multifunctional-rice-cooker/&#34;&gt;Wi-Fi 智能電飯鍋&lt;/a&gt; 上嗎 XD？&lt;br /&gt;
 這個時候，我們可以透過一台支援 Tailscale 的 Linux 裝置設定 &lt;strong&gt;子網路路由&lt;/strong&gt;，來幫助其他設備連接到您的 Tailnet。博主的做法是在 PVE 中長開一個 lxc container 並做好相應配置，然後在 terminal 輸入這一串命令&lt;/p&gt;
 &lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; tailscale up --advertise-routes&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.1.0/24&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;其中  &lt;code&gt;192.168.1.0/24&lt;/code&gt;  更改為路由器的子網 (Subnet)&lt;/p&gt;
 &lt;p&gt;接著到 &lt;strong&gt;Tailscale 控制台&lt;/strong&gt; 中啟用這個路由。&lt;/p&gt;
@@ -331,9 +334,9 @@
         <updated>2025-02-22T12:59:11.000Z</updated>
     </entry>
     <entry>
-        <id>https://lolicon.wtf/2025/01/19/computer-science/wake-on-lan/</id>
+        <id>https://lolicon.wtf/posts/computer-science/wake-on-lan/</id>
         <title>懶得去按電源鍵了？Wake On LAN 完整設定教學</title>
-        <link rel="alternate" href="https://lolicon.wtf/2025/01/19/computer-science/wake-on-lan/"/>
+        <link rel="alternate" href="https://lolicon.wtf/posts/computer-science/wake-on-lan/"/>
         <content type="html">&lt;iframe id=&#34;video&#34; width=&#34;100%&#34; height=&#34;450&#34; src=&#34;https://www.youtube.com/embed/VG6sCC4afRI?controls=1&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; allowfullscreen&gt;&lt;/iframe&gt;
 &lt;p&gt;當你不在電腦前卻需要存取裡面的資料時，你會怎樣做？&lt;/p&gt;
 &lt;p&gt;很多朋友都會回答博主使用遠端連線解決，因為這是一個非常便捷的選擇&lt;/p&gt;
@@ -358,23 +361,23 @@
 &lt;ol&gt;
 &lt;li&gt;首先於鍵盤按下  &lt;code&gt;Windows鍵 + X&lt;/code&gt; ，並選擇「裝置管理員」(Device Manager)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows1.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 1&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/configwindows1.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 1&#34;&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;展開「網路介面卡」(Network adapters)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows2.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 2&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/configwindows2.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 2&#34;&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;找到您使用的網路卡，按右鍵選擇「內容」(Properties)。小弟這邊使用的是 &amp;quot;Intel (R) Ethernet Controller I226-V&amp;quot;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows3.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 3&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/configwindows3.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 3&#34;&gt;
 &lt;ol start=&#34;4&#34;&gt;
 &lt;li&gt;接着應該會看到以下畫面：&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows4.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 4&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/configwindows4.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 4&#34;&gt;
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;移至「電源管理」(Power Management)，啟用「允許電腦關閉這個裝置以節省電源」(Allow the computer to turn off this device to save power) 和「允許這個裝置喚醒電腦」(Allow this device to wake the computer)，完成！&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/configwindows5.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 5&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/configwindows5.png&#34; class=&#34;&#34; title=&#34;Windows Configuration 5&#34;&gt;
 &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;如果找不到這些選項，可能是您的網路卡不支援 WOL 功能喔！建議更換支援的網卡～&lt;/p&gt;
 &lt;/div&gt;
@@ -392,39 +395,39 @@
 &lt;ol&gt;
 &lt;li&gt;開啟瀏覽器，輸入 &lt;span class=&#34;label&#34;&gt;192.168.0.1&lt;/span&gt; / &lt;span class=&#34;label&#34;&gt;192.168.1.1&lt;/span&gt; 或您的預設閘道進入管理介面&lt;br&gt;因為小弟已經更改預設閘道為 &lt;span class=&#34;label&#34;&gt;192.168.217.100&lt;/span&gt;，所以這邊輸入 &lt;span class=&#34;label&#34;&gt;192.168.217.100&lt;/span&gt;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/chrome.png&#34; class=&#34;&#34; title=&#34;Chrome&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/tplinklogin1.png&#34; class=&#34;&#34; title=&#34;TP-Link Router Login Page&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/chrome.png&#34; class=&#34;&#34; title=&#34;Chrome&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/tplinklogin1.png&#34; class=&#34;&#34; title=&#34;TP-Link Router Login Page&#34;&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;輸入您的管理員密碼&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/tplinklogin2.png&#34; class=&#34;&#34; title=&#34;TP-Link Router Login Page&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/tplinklogin2.png&#34; class=&#34;&#34; title=&#34;TP-Link Router Login Page&#34;&gt;
 &lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;建議更改預設的路由器登入密碼，防止被他人入侵。&lt;/p&gt;
 &lt;/div&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;登入後會看到以下介面&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig1.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/routerconfig1.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
 &lt;ol start=&#34;4&#34;&gt;
 &lt;li&gt;進入 &lt;span class=&#34;label&#34;&gt;Advanced&lt;/span&gt; → &lt;span class=&#34;label&#34;&gt;Network&lt;/span&gt; → &lt;span class=&#34;label&#34;&gt;DHCP Server&lt;/span&gt;，在下面的 Address Reservation 按 &lt;span class=&#34;label&#34;&gt;+ Add&lt;/span&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig2.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/routerconfig2.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;輸入目標裝置的 &lt;span class=&#34;label&#34;&gt;IPv4&lt;/span&gt; 和 &lt;span class=&#34;label&#34;&gt;MAC&lt;/span&gt;，然後按 Save 保存&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig3.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/routerconfig3.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
 &lt;ol start=&#34;6&#34;&gt;
 &lt;li&gt;移至 &lt;span class=&#34;label&#34;&gt;Security&lt;/span&gt; → &lt;span class=&#34;label&#34;&gt;IP &amp;amp; MAC Binding&lt;/span&gt; 並啟用，於下方 Binding List 按 &lt;span class=&#34;label&#34;&gt;+ Add&lt;/span&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig4.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/routerconfig4.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
 &lt;ol start=&#34;7&#34;&gt;
 &lt;li&gt;輸入目標裝置的 &lt;span class=&#34;label&#34;&gt;MAC&lt;/span&gt; 和 &lt;span class=&#34;label&#34;&gt;IPv4&lt;/span&gt;，然後按 Save 保存&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig5.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/routerconfig5.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
 &lt;ol start=&#34;8&#34;&gt;
 &lt;li&gt;移至 &lt;span class=&#34;label&#34;&gt;NAT Forwarding&lt;/span&gt; → &lt;span class=&#34;label&#34;&gt;Port Forwarding&lt;/span&gt; ， 按 &lt;span class=&#34;label&#34;&gt;+ Add&lt;/span&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig6.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/routerconfig6.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
 &lt;ol start=&#34;9&#34;&gt;
 &lt;li&gt;設定連接埠轉發：
 &lt;ul&gt;
@@ -436,40 +439,40 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;完成後按 Save 保存&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/routerconfig7.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/routerconfig7.jpg&#34; class=&#34;&#34; title=&#34;TP-Link Router User Interface&#34;&gt;
 &lt;h2 id=&#34;step-3主機板-bios-設定&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#step-3主機板-bios-設定&#34;&gt;#&lt;/a&gt; Step 3：主機板 BIOS 設定&lt;/h2&gt;
 &lt;p&gt;這是最後但也是不可或缺的一步！下面小弟以 MSI 主機板為例：&lt;/p&gt;
 &lt;p&gt;進入 BIOS 的辦法有很多，以下是其中一種：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;開機時瘋狂按 Delete / F2 / F12 鍵進入 BIOS&lt;/li&gt;
+&lt;li&gt;開機時瘋狂按 &lt;span class=&#34;kbd&#34;&gt;Delete&lt;/span&gt; / &lt;span class=&#34;kbd&#34;&gt;F2&lt;/span&gt; / &lt;span class=&#34;kbd&#34;&gt;F12&lt;/span&gt; 鍵進入 BIOS&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;然而小弟啟用了快速啟動 (MSI Fast Boot)，跳過了鍵盤偵測的程序，故需要從 Windows 的復原介面進入&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;於復原 / 恢復介面中，選擇疑難排解 (Troubleshooting) → 進階選項 (Advanced options)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/recovery1.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/recovery2.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/recovery1.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/recovery2.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;選擇 UEFI 韌體設定 (UEFI Firmware Settings) → 然後按重新啟動 (Restart)&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/recovery3.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/recovery4.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/recovery3.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/recovery4.jpg&#34; class=&#34;&#34; title=&#34;Windows Recovery Screen&#34;&gt;
 &lt;p&gt;進入 BIOS 後，進行如下設定：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;於主選單中，移至 &lt;span class=&#34;label&#34;&gt;SETTINGS&lt;/span&gt; → Advanced&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios1.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios2.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/bios1.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/bios2.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;選擇 &lt;span class=&#34;label&#34;&gt;Wake Up Event Setup&lt;/span&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios3.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/bios3.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
 &lt;ol start=&#34;3&#34;&gt;
 &lt;li&gt;在 &lt;span class=&#34;label&#34;&gt;Resume By PCI-E/Networking Device&lt;/span&gt; 中，將設定更改為 &lt;span class=&#34;label&#34;&gt;Enable&lt;/span&gt;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios4.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios5.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/19/computer-science/wake-on-lan/bios6.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/bios4.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/bios5.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/wake-on-lan/bios6.bmp&#34; class=&#34;&#34; title=&#34;MSI BIOS Configuration&#34;&gt;
 &lt;ol start=&#34;4&#34;&gt;
 &lt;li&gt;大功告成！請按 &lt;span class=&#34;label&#34;&gt;X&lt;/span&gt; 儲存設定並重新開機&lt;/li&gt;
 &lt;/ol&gt;
@@ -506,7 +509,7 @@ A: 最常見的原因是：&lt;/p&gt;
 &lt;li&gt;快速啟動功能已啟用。移至「控制台」 → 「電源管理」 → 「選擇按下電源按鈕時的行為」, 關閉「快速啟動」。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Q: 筆電可以用 WOL 嗎？&lt;/strong&gt;&lt;br /&gt;
-A: 大部份筆電以使用無線網絡為主。新款筆電甚至不提供網絡線插口，故並不支援網絡喚醒。&lt;br /&gt;
+A: 大部份筆電以使用無線網絡為主。新款筆電甚至不提供網絡線插口，故並不支援 LAN 網絡喚醒。&lt;br /&gt;
 少部份舊款機型可以，但需要確保 BIOS 內有支援，其次需要特別注意電源管理設定，且最好使用原廠電源適配器。&lt;/p&gt;
 &lt;h2 id=&#34;總結&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#總結&#34;&gt;#&lt;/a&gt; 總結&lt;/h2&gt;
 &lt;p&gt;WOL 的功能設定可謂繁複，但設定好之後真的非常方便！再也不用擔心忘了開電腦而無法遠端工作了⋯⋯&lt;/p&gt;
@@ -528,19 +531,19 @@ A: 大部份筆電以使用無線網絡為主。新款筆電甚至不提供網�
         <updated>2025-01-19T07:30:59.000Z</updated>
     </entry>
     <entry>
-        <id>https://lolicon.wtf/2025/01/02/test/</id>
+        <id>https://lolicon.wtf/posts/test/</id>
         <title>Hello World！Am I look cute?</title>
-        <link rel="alternate" href="https://lolicon.wtf/2025/01/02/test/"/>
+        <link rel="alternate" href="https://lolicon.wtf/posts/test/"/>
         <content type="html">&lt;p&gt;Hey~ Am I look cute?&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/2025/01/02/test/image2.jpg&#34; class=&#34;&#34; title=&#34;This is an example image&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/test/image2.jpg&#34; class=&#34;&#34; title=&#34;This is an example image&#34;&gt;
 </content>
         <category term="日常廢文" scheme="https://lolicon.wtf/categories/%E6%97%A5%E5%B8%B8%E5%BB%A2%E6%96%87/" />
         <updated>2025-01-02T08:40:12.000Z</updated>
     </entry>
     <entry>
-        <id>https://lolicon.wtf/2025/01/01/english/supercalifragilisticexpialidocious/</id>
+        <id>https://lolicon.wtf/posts/english/supercalifragilisticexpialidocious/</id>
         <title>Word of the day No.1 - Supercalifragilisticexpialidocious</title>
-        <link rel="alternate" href="https://lolicon.wtf/2025/01/01/english/supercalifragilisticexpialidocious/"/>
+        <link rel="alternate" href="https://lolicon.wtf/posts/english/supercalifragilisticexpialidocious/"/>
         <content type="html">&lt;h1 id=&#34;supercalifragilisticexpialidocious-ˌsuːpəkalɪˌfradʒɪlɪstɪkˌɛkspɪalɪˈdəʊʃəs-adj&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#supercalifragilisticexpialidocious-ˌsuːpəkalɪˌfradʒɪlɪstɪkˌɛkspɪalɪˈdəʊʃəs-adj&#34;&gt;#&lt;/a&gt; supercalifragilisticexpialidocious /ˌsuːpəkalɪˌfradʒɪlɪstɪkˌɛkspɪalɪˈdəʊʃəs/ adj.  ★★★★☆&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Supercalifragilisticexpialidocious&lt;/strong&gt; is a made-up word that gained fame through the 1964 Disney musical film &lt;em&gt;Mary Poppins&lt;/em&gt;. It was sung by Julie Andrews and Dick Van Dyke in the song of the same name. The songwriters, the Sherman Brothers (Richard and Robert Sherman), created this whimsical word to evoke a sense of fun and wonder. It encapsulates the magical and extraordinary nature of the character Mary Poppins and the world she inhabits.&lt;/p&gt;
 &lt;h3 id=&#34;early-references-and-coinage&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#early-references-and-coinage&#34;&gt;#&lt;/a&gt; Early References and Coinage&lt;/h3&gt;
@@ -598,9 +601,9 @@ A: 大部份筆電以使用無線網絡為主。新款筆電甚至不提供網�
         <updated>2025-01-01T17:40:12.000Z</updated>
     </entry>
     <entry>
-        <id>https://lolicon.wtf/2024/12/31/casual/omisoka/</id>
+        <id>https://lolicon.wtf/posts/casual/omisoka/</id>
         <title>おおみそか 有感</title>
-        <link rel="alternate" href="https://lolicon.wtf/2024/12/31/casual/omisoka/"/>
+        <link rel="alternate" href="https://lolicon.wtf/posts/casual/omisoka/"/>
         <content type="html">&lt;div class=&#34;note info&#34;&gt;
 &lt;p&gt;本文大部分內容均由人工智能助理生成&lt;/p&gt;
 &lt;/div&gt;
@@ -631,9 +634,9 @@ A: 大部份筆電以使用無線網絡為主。新款筆電甚至不提供網�
         <updated>2024-12-31T08:40:15.000Z</updated>
     </entry>
     <entry>
-        <id>https://lolicon.wtf/2024/12/31/test2/</id>
+        <id>https://lolicon.wtf/posts/test2/</id>
         <title>Hello World 3</title>
-        <link rel="alternate" href="https://lolicon.wtf/2024/12/31/test2/"/>
+        <link rel="alternate" href="https://lolicon.wtf/posts/test2/"/>
         <content type="html">&lt;p&gt;Welcome to &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
 &lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
@@ -649,9 +652,9 @@ A: 大部份筆電以使用無線網絡為主。新款筆電甚至不提供網�
         <updated>2024-12-31T08:40:13.000Z</updated>
     </entry>
     <entry>
-        <id>https://lolicon.wtf/2024/12/31/hello-world/</id>
+        <id>https://lolicon.wtf/posts/hello-world/</id>
         <title>Hello World</title>
-        <link rel="alternate" href="https://lolicon.wtf/2024/12/31/hello-world/"/>
+        <link rel="alternate" href="https://lolicon.wtf/posts/hello-world/"/>
         <content type="html">&lt;div class=&#34;hbe hbe-container&#34; id=&#34;hexo-blog-encrypt&#34; data-wpm=&#34;Oh, this is an invalid password. Check and try again, please.&#34; data-whm=&#34;Oh, these decrypted content cannot be verified, but you can still have a look.&#34;&gt;
   &lt;script id=&#34;hbeData&#34; type=&#34;hbeData&#34; data-hmacdigest=&#34;39249492d31b91dce5e3e58404a320905940206e2dbb964c281eb5a533da45c5&#34;&gt;3a325dc39ad404746d7c8526f2f7a0827d8078926b01ce53c2e5975ff68006c93eb6e3ac0d54e97e9c442ab23d3522c3b82eabde7218cd9431dfa8d0e9452b7576215aa9ceb4a3585ee202f414b2e94fa9c9164bcb0d00850a640cc3909295943dac4801777936b833a931634d28782f650e8c42a0a6ec71353da3c0ce76ce0dab1e9b5320d13feb6e336dbbdd5da8bbcc87ffeae266dd503ae1cc16abb57606033236aa3429537c6519565fd7379b201a83070e3208616c96fd7f35b87f458ef7285f452c994742dcb6614872765df353fefcc2edbbe1ebb1e7d96b7b4ce3fc78974b28b09b389df8ac03a91b489e1408db353ead2f57b3855f1ed9cf0d7b780256cdbf1cf2e62a6035672f85a80e60f7c2bffcf4d0ef3a8f422ee7895792b91400aa30925dacb49851be36815ecea1509cf68bedccb2da23aa20b57b98a52aebd23ecdf79ce9b56588044a72ca45a84a7acb817647e4cc47c64848e05da817f425bca9d1b44c07a0721cfa56df64e2c636e256785b6ee18ac073da22623836fcb11913d579291ecfb882160a16bbb133450f348c0b0ad8666c8457ec53e54f2638869d030d686308a550e0db18dd510dab343ae9a38de5aa9def038694ea35583afa107372ef4a701a3e60acd80a3bd9d14f7391221380f86a74469cd2acd598aef6709077c0d3ae51e074894258652de97919813bf5310da48cf5e44cfb8cb6097fcf4b04084001c01221da7fd6ace48599837b7c3eef58d1f28d03253506d476c84a06ba593c014b9f6ec97aeebf1afa1a69020a5d8ed673a6b35774ad9b4bd47a41dd99d1c17960a1f8c96c1505160f38a61532dcd71d12acaf90dfde30c832c1a5f53623551715a2c2ad963eeea4d30eef3fa61734224bfae8101e3ffdf42f23a26ffd1f0ed326beeffe7d313ec6d70ff0bcf5a8a20ea1df42711f0f0fffee6096f94633ea3e25fc9ccc4630c792e597c85e05bf05cf00cff66e1edf4fbe80e10b8d3f3a7e05688a6522eb8a543fa2322db98353733a846fe4138ef2d29493dfd54d4254ac7ef844f74fb7e9cab0fe57c0e20a3708cc0ada01c83f3262656e0758fb1c3b97218fa914101e2a87871634dff54c83ffad9ca48838188752162a56254153bdf8dddc6ba4567373e35316ee0914ab6c211455b67ab0bbb544535831f0c5c014e87dd3fbc7d5885945ea88a8e8113228336198fb6e532277be5b1fea486ca505396314b8ceec6886233b00fb368dc82654ffc6d5b84e7692759839253a148838548861fc16d9e931df9a66a6568af323041fd16257533d6d40f4a2f89bf58d25c5bf553ba4c6abb1ffbaa572ef1fd6dcecc3eef5676ac9ba5a928ec4f685c2bbd64850d5e12980745c194b5fa1f5db52afaea38d2d77a062bd4182fa0a1c8686e179a1c6f3be18c91ec6acfbefa28f6af4ac93614c1431d6076d06d8b962268271e8e08cfa7cd505c8906a7472f71840e15af509f2f4f6f5f28c5136cdaba7d733ba64d8dbb08eecc533ab060465c2dd14f1d721a514d357729959131b1ff12f512178ddfcd267bb33bf011fa63a37d9a0f3d31448dab3fd907ce0122797ed0776d38e3564445ae9334e9c786d69c0cafa11ec4c8b7c87f68905d20c976941125bbe0b63e55cf2eae029df9a8570584896de4d2a61d2ab24a6eb198a7494ab615d3d4257c2791f05a4accfe03c34eb4c297c098a3d73dcbe71c0b7c11d9791128518d5fc40df9fe6f930ff65cb7e62f3f5def6062d0e175f3305d7a03004f6ac04407df6c480fe5c3838406bce1c0f1678da2109fbe6973c52ee309a4064aac4b3bb25487585eaf0806d46b13e693e31298e71635bca354f1eb0bd2d1f516d2458c3907f6d760bd1dbba58363241dc4414e0e79e52c68cfef201ab8f19132f4c834bdeb31821ab5de02c9abc568adad57ab3fcc3d5c53ec7ea5d276d964975f799362f7dd946a25f075c2e57b78f8191a09bb87c38a68eae3b3422b8019077f6a1ced7b35c5ff552f4112cea2eb5f7de98f623187b01619e16c11ba6c047ce74d65ce5aab05bd95751502baa3ba93539986efe6922f8686d9454788a11acef223751bd55fa66c0e82b04fffc743d9ac70a35ab83e34862c67ac4264fa3c288fc04de1f09c87c952cb7e8299f82de7a60c4c80cef2d1e798899aceba2c277706c4cf8af2917796efc7f8acece760470110e57bf34344659fc86c71bcc35b048a6d617a0f8c6eee36f6b170a7f8dc1d565fa61111b6c5d61b7849d692dc174ad1af33c24b565280c82e28fd83f8f2a30955c7b183e1948f947133492e9233001a3da69210030ea5518f43bc24127458c8321e283552679c8de9530f2827448e36d4446d5405880079da0b3dce96b71bf917938857493b8db5a4c54314e1cd3279f678521fe4a539482df421913207cbd302d2714c21f1fa8ad8075142779fcf5772d7df1d724b5a340bade83295698ba2894176c4a3d19eb007888d19f0ed6260db77ea62bc3c4251d73ca96446f3aa710e8745c7de25b1b9da0e7e0a1102eaf3fbefd537285bfd962a19ebaca6948f7a56010f6153505737c4ee5174c768fe5f071ed2e0a414238f35f83f5707b5509b29405556a41726ef629b86dabfd6f751f3bb1c867f43c587d214a0053514caa9a05a6ecd7ca76b82c55890cc8a40362434ebc0296178c1c6e6d64baccdbfc86a17eb93ecc2f7aca66549e7c4c549ad11a0a8a8094bfacd4b7088bea2b777362da69e98c73d96f9405272db41cfa30fd9f11280075caf58225ab0d721628e50404e88def62b26cf3d3619d05cc769be939b832ee8808fce9761c72c0f30dddb48e4f54065c51ca22494b&lt;/script&gt;
   &lt;div class=&#34;hbe hbe-content&#34;&gt;
