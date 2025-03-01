@@ -1,5 +1,5 @@
 // live2d_path 参数建议使用绝对路径
-const live2d_path = "https://lolicon.wtf/live2d-widget-tc/";
+const live2d_path = "https://api.lolicon.wtf/live2d-widget-tc/";
 //const live2d_path = "/live2d-widget/";
 
 // 封装异步加载资源的方法
@@ -34,7 +34,7 @@ if (screen.width >= 768) {
 		// 配置选项的具体用法见 README.md
 		initWidget({
 			waifuPath: live2d_path + "waifu-tips.json",
-			apiPath: "https://lolicon.wtf/live2d_api/",
+			apiPath: "https://api.lolicon.wtf/live2d-api/",
 			//apiPath: "https://live2d.fghrsh.net/api/",
 			//cdnPath: "https://fastly.jsdelivr.net/gh/Yuzuk1Shimotsuki/live2d_api-zh-TW/",
 			tools: ["hitokoto", "asteroids", "switch-model", "switch-texture", "photo", "info", "quit"]
