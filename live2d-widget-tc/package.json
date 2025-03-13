@@ -1,0 +1,31 @@
+{
+  "name": "live2d-widget",
+  "version": "0.9.0",
+  "description": "Live2D widget for web pages",
+  "main": "autoload.js",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c rollup.config.js -f iife | terser -c -m > waifu-tips.js",
+    "build-dev": "rollup -c rollup.config.js -f iife -o waifu-tips.js -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yuzuk1Shimotsuki/live2d-widget-tc.git"
+  },
+  "keywords": [
+    "Live2d"
+  ],
+  "author": "Yuzu1kShimotsuki <yuzu1kshimotsuki-dev@lolicon.wtf>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Yuzu1kShimotsuki/live2d-widget-tc/issues"
+  },
+  "homepage": "https://github.com/Yuzuk1Shimotsuki/live2d-widget-tc#readme",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/pluginutils": "^5.0.1",
+    "rollup": "^3.2.3",
+    "terser": "^5.15.1"
+  }
+}
