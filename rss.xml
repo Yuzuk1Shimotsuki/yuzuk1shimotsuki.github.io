@@ -13,36 +13,36 @@
         <pubDate>Sat, 22 Mar 2025 15:09:01 +0000</pubDate>
         <lastBuildDate>Sat, 22 Mar 2025 15:09:01 +0000</lastBuildDate>
         <item>
-            <guid isPermalink="true">https://lolicon.wtf/posts/computer-science/its-now-safe-to-turn-off-your-computer/</guid>
+            <guid isPermalink="true">https://lolicon.wtf/posts/casual/its-now-safe-to-turn-off-your-computer/</guid>
             <title>「It&#39;s now safe to turn off your computer.」 從一句話淺談科技歷史的回憶</title>
-            <link>https://lolicon.wtf/posts/computer-science/its-now-safe-to-turn-off-your-computer/</link>
+            <link>https://lolicon.wtf/posts/casual/its-now-safe-to-turn-off-your-computer/</link>
             <category term="隨筆" scheme="https://lolicon.wtf/categories/casual/" />
-            <category term="Windows" scheme="https://lolicon.wtf/tags/Windows/" />
             <category term="OS" scheme="https://lolicon.wtf/tags/OS/" />
+            <category term="Windows" scheme="https://lolicon.wtf/tags/Windows/" />
             <category term="ACPI" scheme="https://lolicon.wtf/tags/ACPI/" />
             <category term="Legacy OS" scheme="https://lolicon.wtf/tags/Legacy-OS/" />
             <pubDate>Sat, 22 Mar 2025 15:09:01 +0000</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#背景&#34;&gt;#&lt;/a&gt; 背景&lt;/h1&gt;
 &lt;p&gt;近日博主在折騰自己的 Flipper。碰巧有一次關機時忘了拔 USB 線，然後它跳出了這個畫面來：&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/flipper_zero_shutdown.jpg&#34; class=&#34;&#34; title=&#34;It&amp;#39;s now safe to unplug the USB cable&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/casual/its-now-safe-to-turn-off-your-computer/flipper_zero_shutdown.jpg&#34; class=&#34;&#34; title=&#34;It&amp;#39;s now safe to unplug the USB cable&#34;&gt;
 &lt;p&gt;一𣊬間便引起了博主的注意：這不就跟「It&#39;s now safe to turn off your computer.」一樣概念嗎？於是做了點功課，把這篇文章肝了出來......&lt;/p&gt;
 &lt;h1 id=&#34;epilogue&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#epilogue&#34;&gt;#&lt;/a&gt; Epilogue&lt;/h1&gt;
 &lt;p&gt;如果你曾經使用過 1990 年代和 2000 年代初期的電腦，你一定對那句經典提示不陌生：&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;bulr&#34;&gt;(或是像博主一樣愛研究一些古科技啦 XD)&lt;/span&gt;&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_Screen.webp&#34; class=&#34;&#34; title=&#34;It&amp;#39;s now safe to turn off your computer&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/casual/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_Screen.webp&#34; class=&#34;&#34; title=&#34;It&amp;#39;s now safe to turn off your computer&#34;&gt;
 &lt;p&gt;這句話曾經是 Windows 作業系統用戶的日常，代表著一個時代的科技特色&lt;/p&gt;
 &lt;p&gt;隨著電腦技術的進步，這句話逐漸消失在我們的生活中，但它背後所蘊含的歷史與技術背景，值得我們細細回味&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;bulr&#34;&gt;(說實話博主在小學時期折騰一台老 CRT Dell 時也有看到過這個畫面 XD，不過也就只有幾次罷了 TT...)&lt;/span&gt;&lt;/p&gt;
 &lt;h1 id=&#34;那句話出現的原因-早期電腦與-at-電源設計&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#那句話出現的原因-早期電腦與-at-電源設計&#34;&gt;#&lt;/a&gt; 那句話出現的原因：早期電腦與 AT 電源設計&lt;/h1&gt;
 &lt;p&gt;在 1990 年代，電腦的硬體設計與現代相比有很大的不同。當時的電腦大多採用 AT (Advanced Technology) 電源架構，這種設計需要用戶手動按下實體電源按鈕來關閉電腦&lt;/p&gt;
 &lt;p&gt;早期 Windows 95 丶 Windows 98 等作業系統在結束運行時，無法直接控制硬體電源的開關。因此，當你在系統中點擊「關機」之後，作業系統會將所有的程序結束、保存數據並安全退出，隨後顯示「It&#39;s now safe to turn off your computer. (您現在可以放心關機)」的提示，告訴用戶可以放心按下電源按鈕了。&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_zh_TW.png&#34; class=&#34;&#34; title=&#34;您現在可以放心關機&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/casual/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_zh_TW.png&#34; class=&#34;&#34; title=&#34;您現在可以放心關機&#34;&gt;
 &lt;p&gt;這段流程的設計，是為了確保在硬碟寫入操作結束後再關閉電腦，避免數據損壞或系統損壞的風險&lt;/p&gt;
 &lt;h1 id=&#34;技術的進步&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#技術的進步&#34;&gt;#&lt;/a&gt; 技術的進步&lt;/h1&gt;
 &lt;h2 id=&#34;從-at-到-atx-架構&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#從-at-到-atx-架構&#34;&gt;#&lt;/a&gt; 從 AT 到 ATX 架構&lt;/h2&gt;
 &lt;p&gt;1995 年，Intel 制定了 ATX (Advanced Technology Extended) 架構，用於取代 AT 架構。其最大的改進之一就是讓電源供應器無須再以電線㶥接至電腦機箱的電源開關，並且引入了軟體控制電源的能力。這意味著作業系統可以直接控制電腦的開關，而不需要用戶手動按下實體按鈕&lt;/p&gt;
 &lt;p&gt;在 Windows 2000 和 Windows XP 中，這一技術得到了廣泛應用。當用戶點擊「關機」時，作業系統不再顯示「It&#39;s now safe to turn off your computer.」，而是直接關閉電腦電源，讓整個過程更加自動化和方便&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/windows-xp-shutdown.png&#34; class=&#34;&#34; title=&#34;Windows XP shutdown screen&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/casual/its-now-safe-to-turn-off-your-computer/windows-xp-shutdown.png&#34; class=&#34;&#34; title=&#34;Windows XP shutdown screen&#34;&gt;
 &lt;p&gt;此後，這項技術也就成為了當今所有主流作業系統的標配&lt;/p&gt;
 &lt;h2 id=&#34;acpi-的問世&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#acpi-的問世&#34;&gt;#&lt;/a&gt; ACPI 的問世&lt;/h2&gt;
 &lt;p&gt;1996 年，Intel、Microsoft 和 Toshiba 等科技公司聯合推出了 ACPI (Advanced Configuration and Power Interface，進階組態與電源介面)，成為現代電腦電源管理的一個重要里程碑。它能夠讓作業系統直接管理電腦硬體的電源功能，而不再依賴 BIOS 或硬體來進行操作。&lt;/p&gt;
@@ -51,9 +51,9 @@
 &lt;p&gt;ACPI 還支援硬體設備的即時管理，允許作業系統根據需要啟用或關閉特定的硬體設備，例如硬碟或顯示器，進一步降低能源消耗&lt;/p&gt;
 &lt;h1 id=&#34;一段早已消失的記憶卻充滿幾代人的回憶&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一段早已消失的記憶卻充滿幾代人的回憶&#34;&gt;#&lt;/a&gt; 一段早已消失的記憶，卻充滿幾代人的回憶&lt;/h1&gt;
 &lt;p&gt;對於許多經歷過早期電腦時代的人來說，「It&#39;s now safe to turn off your computer.」這句話不僅是一個提示，更是一種懷舊的象徵。它代表了那個時代的技術限制，也提醒我們科技的進步如何改變了我們的日常生活&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_XP.png&#34; class=&#34;&#34; title=&#34;It&amp;#39;s now safe to turn off your computer&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/casual/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_XP.png&#34; class=&#34;&#34; title=&#34;It&amp;#39;s now safe to turn off your computer&#34;&gt;
 &lt;p&gt;如今，我們的電腦和智慧裝置幾乎可以隨時進入休眠或關機狀態，而不需要擔心數據損壞的問題。然而，那句簡單的提示語，卻像是時光機一樣，把我們帶回到一個需要耐心等待的時代&lt;/p&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/Windows-11-shutdown.png&#34; class=&#34;&#34; title=&#34;Windows 11 shutdown screen&#34;&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/casual/its-now-safe-to-turn-off-your-computer/Windows-11-shutdown.png&#34; class=&#34;&#34; title=&#34;Windows 11 shutdown screen&#34;&gt;
 &lt;h1 id=&#34;prologue&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#prologue&#34;&gt;#&lt;/a&gt; Prologue&lt;/h1&gt;
 &lt;p&gt;「It&#39;s now safe to turn off your computer.」的消失，標誌著電腦硬體與軟體設計的進步。從需要手動關機，到如今自動化的流程，這一變化體現了科技如何讓使用者體驗變得更簡單、更人性化&lt;/p&gt;
 &lt;p&gt;雖然這句話已經成為歷史，但它仍然是許多人心中的一段美好回憶。當我們回顧那個時代，不僅僅是在緬懷過去的科技，更是在反思我們如何靠著創新一步步走向今天的便利生活&lt;/p&gt;
@@ -66,9 +66,9 @@
             <link>https://lolicon.wtf/posts/computer-science/windows-xp-vm-sound-distortion-fix/</link>
             <category term="技術文" scheme="https://lolicon.wtf/categories/%E6%8A%80%E8%A1%93%E6%96%87/" />
             <category term="教學" scheme="https://lolicon.wtf/tags/%E6%95%99%E5%AD%B8/" />
-            <category term="Computer Science" scheme="https://lolicon.wtf/tags/Computer-Science/" />
             <category term="Windows" scheme="https://lolicon.wtf/tags/Windows/" />
             <category term="Legacy OS" scheme="https://lolicon.wtf/tags/Legacy-OS/" />
+            <category term="Computer Science" scheme="https://lolicon.wtf/tags/Computer-Science/" />
             <category term="Windows XP" scheme="https://lolicon.wtf/tags/Windows-XP/" />
             <category term="VM" scheme="https://lolicon.wtf/tags/VM/" />
             <pubDate>Fri, 14 Mar 2025 09:09:01 +0000</pubDate>
@@ -114,8 +114,8 @@
             <link>https://lolicon.wtf/posts/computer-science/change-name-of-user-profile-folder-in-windows-11/</link>
             <category term="技術文" scheme="https://lolicon.wtf/categories/%E6%8A%80%E8%A1%93%E6%96%87/" />
             <category term="教學" scheme="https://lolicon.wtf/tags/%E6%95%99%E5%AD%B8/" />
-            <category term="Computer Science" scheme="https://lolicon.wtf/tags/Computer-Science/" />
             <category term="Windows" scheme="https://lolicon.wtf/tags/Windows/" />
+            <category term="Computer Science" scheme="https://lolicon.wtf/tags/Computer-Science/" />
             <category term="Microsoft Account" scheme="https://lolicon.wtf/tags/Microsoft-Account/" />
             <pubDate>Wed, 12 Mar 2025 14:39:56 +0000</pubDate>
             <description><![CDATA[ &lt;p&gt;在 Windows 11 中，當我們建立新的使用者帳戶時，系統會自動分配一個個人資料資料夾名稱。&lt;/p&gt;
@@ -840,28 +840,10 @@ A: 大部份筆電以使用無線網絡為主。新款筆電甚至不提供網�
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://lolicon.wtf/posts/test2/</guid>
-            <title>Hello World 3</title>
-            <link>https://lolicon.wtf/posts/test2/</link>
-            <category term="about" scheme="https://lolicon.wtf/categories/about/" />
+            <guid isPermalink="true">https://lolicon.wtf/posts/hello-world-with-password/</guid>
+            <title>???</title>
+            <link>https://lolicon.wtf/posts/hello-world-with-password/</link>
             <pubDate>Tue, 31 Dec 2024 08:40:13 +0000</pubDate>
-            <description><![CDATA[ &lt;p&gt;Welcome to &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
-&lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo new &lt;span class=&#34;token string&#34;&gt;&#34;My New Post&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/writing.html&#34;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;run-server&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#run-server&#34;&gt;#&lt;/a&gt; Run server&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo server&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/server.html&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;generate-static-files&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#generate-static-files&#34;&gt;#&lt;/a&gt; Generate static files&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo generate&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/generating.html&#34;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
-&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo deploy&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://lolicon.wtf/posts/hello-world/</guid>
-            <title>Hello World</title>
-            <link>https://lolicon.wtf/posts/hello-world/</link>
-            <pubDate>Tue, 31 Dec 2024 08:40:12 +0000</pubDate>
             <description><![CDATA[ &lt;div class=&#34;hbe hbe-container&#34; id=&#34;hexo-blog-encrypt&#34; data-wpm=&#34;Oh, this is an invalid password. Check and try again, please.&#34; data-whm=&#34;Oh, these decrypted content cannot be verified, but you can still have a look.&#34;&gt;
   &lt;script id=&#34;hbeData&#34; type=&#34;hbeData&#34; data-hmacdigest=&#34;39249492d31b91dce5e3e58404a320905940206e2dbb964c281eb5a533da45c5&#34;&gt;3a325dc39ad404746d7c8526f2f7a0827d8078926b01ce53c2e5975ff68006c93eb6e3ac0d54e97e9c442ab23d3522c3b82eabde7218cd9431dfa8d0e9452b7576215aa9ceb4a3585ee202f414b2e94fa9c9164bcb0d00850a640cc3909295943dac4801777936b833a931634d28782f650e8c42a0a6ec71353da3c0ce76ce0dab1e9b5320d13feb6e336dbbdd5da8bbcc87ffeae266dd503ae1cc16abb57606033236aa3429537c6519565fd7379b201a83070e3208616c96fd7f35b87f458ef7285f452c994742dcb6614872765df353fefcc2edbbe1ebb1e7d96b7b4ce3fc78974b28b09b389df8ac03a91b489e1408db353ead2f57b3855f1ed9cf0d7b780256cdbf1cf2e62a6035672f85a80e60f7c2bffcf4d0ef3a8f422ee7895792b91400aa30925dacb49851be36815ecea1509cf68bedccb2da23aa20b57b98a52aebd23ecdf79ce9b56588044a72ca45a84a7acb817647e4cc47c64848e05da817f425bca9d1b44c07a0721cfa56df64e2c636e256785b6ee18ac073da22623836fcb11913d579291ecfb882160a16bbb133450f348c0b0ad8666c8457ec53e54f2638869d030d686308a550e0db18dd510dab343ae9a38de5aa9def038694ea35583afa107372ef4a701a3e60acd80a3bd9d14f7391221380f86a74469cd2acd598aef6709077c0d3ae51e074894258652de97919813bf5310da48cf5e44cfb8cb6097fcf4b04084001c01221da7fd6ace48599837b7c3eef58d1f28d03253506d476c84a06ba593c014b9f6ec97aeebf1afa1a69020a5d8ed673a6b35774ad9b4bd47a41dd99d1c17960a1f8c96c1505160f38a61532dcd71d12acaf90dfde30c832c1a5f53623551715a2c2ad963eeea4d30eef3fa61734224bfae8101e3ffdf42f23a26ffd1f0ed326beeffe7d313ec6d70ff0bcf5a8a20ea1df42711f0f0fffee6096f94633ea3e25fc9ccc4630c792e597c85e05bf05cf00cff66e1edf4fbe80e10b8d3f3a7e05688a6522eb8a543fa2322db98353733a846fe4138ef2d29493dfd54d4254ac7ef844f74fb7e9cab0fe57c0e20a3708cc0ada01c83f3262656e0758fb1c3b97218fa914101e2a87871634dff54c83ffad9ca48838188752162a56254153bdf8dddc6ba4567373e35316ee0914ab6c211455b67ab0bbb544535831f0c5c014e87dd3fbc7d5885945ea88a8e8113228336198fb6e532277be5b1fea486ca505396314b8ceec6886233b00fb368dc82654ffc6d5b84e7692759839253a148838548861fc16d9e931df9a66a6568af323041fd16257533d6d40f4a2f89bf58d25c5bf553ba4c6abb1ffbaa572ef1fd6dcecc3eef5676ac9ba5a928ec4f685c2bbd64850d5e12980745c194b5fa1f5db52afaea38d2d77a062bd4182fa0a1c8686e179a1c6f3be18c91ec6acfbefa28f6af4ac93614c1431d6076d06d8b962268271e8e08cfa7cd505c8906a7472f71840e15af509f2f4f6f5f28c5136cdaba7d733ba64d8dbb08eecc533ab060465c2dd14f1d721a514d357729959131b1ff12f512178ddfcd267bb33bf011fa63a37d9a0f3d31448dab3fd907ce0122797ed0776d38e3564445ae9334e9c786d69c0cafa11ec4c8b7c87f68905d20c976941125bbe0b63e55cf2eae029df9a8570584896de4d2a61d2ab24a6eb198a7494ab615d3d4257c2791f05a4accfe03c34eb4c297c098a3d73dcbe71c0b7c11d9791128518d5fc40df9fe6f930ff65cb7e62f3f5def6062d0e175f3305d7a03004f6ac04407df6c480fe5c3838406bce1c0f1678da2109fbe6973c52ee309a4064aac4b3bb25487585eaf0806d46b13e693e31298e71635bca354f1eb0bd2d1f516d2458c3907f6d760bd1dbba58363241dc4414e0e79e52c68cfef201ab8f19132f4c834bdeb31821ab5de02c9abc568adad57ab3fcc3d5c53ec7ea5d276d964975f799362f7dd946a25f075c2e57b78f8191a09bb87c38a68eae3b3422b8019077f6a1ced7b35c5ff552f4112cea2eb5f7de98f623187b01619e16c11ba6c047ce74d65ce5aab05bd95751502baa3ba93539986efe6922f8686d9454788a11acef223751bd55fa66c0e82b04fffc743d9ac70a35ab83e34862c67ac4264fa3c288fc04de1f09c87c952cb7e8299f82de7a60c4c80cef2d1e798899aceba2c277706c4cf8af2917796efc7f8acece760470110e57bf34344659fc86c71bcc35b048a6d617a0f8c6eee36f6b170a7f8dc1d565fa61111b6c5d61b7849d692dc174ad1af33c24b565280c82e28fd83f8f2a30955c7b183e1948f947133492e9233001a3da69210030ea5518f43bc24127458c8321e283552679c8de9530f2827448e36d4446d5405880079da0b3dce96b71bf917938857493b8db5a4c54314e1cd3279f678521fe4a539482df421913207cbd302d2714c21f1fa8ad8075142779fcf5772d7df1d724b5a340bade83295698ba2894176c4a3d19eb007888d19f0ed6260db77ea62bc3c4251d73ca96446f3aa710e8745c7de25b1b9da0e7e0a1102eaf3fbefd537285bfd962a19ebaca6948f7a56010f6153505737c4ee5174c768fe5f071ed2e0a414238f35f83f5707b5509b29405556a41726ef629b86dabfd6f751f3bb1c867f43c587d214a0053514caa9a05a6ecd7ca76b82c55890cc8a40362434ebc0296178c1c6e6d64baccdbfc86a17eb93ecc2f7aca66549e7c4c549ad11a0a8a8094bfacd4b7088bea2b777362da69e98c73d96f9405272db41cfa30fd9f11280075caf58225ab0d721628e50404e88def62b26cf3d3619d05cc769be939b832ee8808fce9761c72c0f30dddb48e4f54065c51ca22494b&lt;/script&gt;
   &lt;div class=&#34;hbe hbe-content&#34;&gt;
@@ -874,6 +856,27 @@ A: 大部份筆電以使用無線網絡為主。新款筆電甚至不提供網�
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;script data-pjax src=&#34;/lib/hbe.js&#34;&gt;&lt;/script&gt;&lt;link href=&#34;/css/hbe.style.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt; ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://lolicon.wtf/posts/hello-world/</guid>
+            <title>Hello World</title>
+            <link>https://lolicon.wtf/posts/hello-world/</link>
+            <category term="about" scheme="https://lolicon.wtf/categories/about/" />
+            <pubDate>Tue, 31 Dec 2024 08:40:13 +0000</pubDate>
+            <description><![CDATA[ &lt;p&gt;今天終於把博客遷到這邊了 (其實本來也沒有什麼東西)，來記錄一下～&lt;/p&gt;
+&lt;p&gt;呃然後沒錯這就是 Hexo 內建模版的首篇文章，特意沒有把它刪掉的 (絕對不是因為我懶)&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p&gt;Welcome to &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&#34;https://hexo.io/docs/&#34;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&#34;https://hexo.io/docs/troubleshooting.html&#34;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&#34;https://github.com/hexojs/hexo/issues&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;quick-start&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#quick-start&#34;&gt;#&lt;/a&gt; Quick Start&lt;/h2&gt;
+&lt;h3 id=&#34;create-a-new-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#create-a-new-post&#34;&gt;#&lt;/a&gt; Create a new post&lt;/h3&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo new &lt;span class=&#34;token string&#34;&gt;&#34;My New Post&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/writing.html&#34;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;run-server&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#run-server&#34;&gt;#&lt;/a&gt; Run server&lt;/h3&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo server&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/server.html&#34;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;generate-static-files&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#generate-static-files&#34;&gt;#&lt;/a&gt; Generate static files&lt;/h3&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo generate&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/generating.html&#34;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;deploy-to-remote-sites&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#deploy-to-remote-sites&#34;&gt;#&lt;/a&gt; Deploy to remote sites&lt;/h3&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;span&gt;h&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;$ hexo deploy&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;More info: &lt;a href=&#34;https://hexo.io/docs/one-command-deployment.html&#34;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
         </item>
     </channel>
 </rss>
