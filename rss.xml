@@ -301,7 +301,7 @@
             <category term="網路設定" scheme="https://lolicon.wtf/tags/%E7%B6%B2%E8%B7%AF%E8%A8%AD%E5%AE%9A/" />
             <category term="VPN" scheme="https://lolicon.wtf/tags/VPN/" />
             <pubDate>Sat, 22 Feb 2025 12:59:11 +0000</pubDate>
-            <description><![CDATA[ &lt;p&gt;在&lt;a href=&#34;https://lolicon.wtf/2025/01/19/computer-science/wake-on-lan/&#34;&gt;上一篇文章&lt;/a&gt;，博主提到如何在家中透過 Wake On LAN 來喚醒電腦。然而很多人可能會問，如果人在外面又該怎麼辦？&lt;/p&gt;
+            <description><![CDATA[ &lt;p&gt;在&lt;a href=&#34;javascript:void(0)&#34; onclick=&#34;window.location.href=window.location.origin + &#39;/posts/computer-science/wake-on-lan&#39;;&#34;&gt;上一篇文章&lt;/a&gt;，博主提到如何在家中透過 Wake On LAN 來喚醒電腦。然而很多人可能會問，如果人在外面又該怎麼辦？&lt;/p&gt;
 &lt;p&gt;辨法倒是有的，例如 DDNS，或是固定 IP 等等 (下幾期會提到)。不過，這些方式雖說能夠解一時燃眉之急，卻無法保護您所傳輸的數據......&lt;/p&gt;
 &lt;p&gt;VPN 正是為此而誕生，但是，相信弄過 VPN 的都會明白，傳統的 OpenVPN 要在路由器上配置很多東西 (新款 TP-Link 路由器倒是把程序簡化了不少)......&lt;/p&gt;
 &lt;p&gt;倒底有沒有辦法能輕鬆建立自己的私人 VPN，而不需要煩人的網路設定？這時候，有請 Tailscale 出場！&lt;/p&gt;
