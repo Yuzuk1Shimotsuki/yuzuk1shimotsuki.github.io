@@ -8,7 +8,55 @@
     <author>
       <name>Yuzuki Shimotsuki</name>
     </author>
-    <updated>2025-03-14T09:09:01.000Z</updated>
+    <updated>2025-03-22T15:09:01.000Z</updated>
+    <entry>
+        <id>https://lolicon.wtf/posts/computer-science/its-now-safe-to-turn-off-your-computer/</id>
+        <title>「It&#39;s now safe to turn off your computer.」 從一句話淺談科技歷史的回憶</title>
+        <link rel="alternate" href="https://lolicon.wtf/posts/computer-science/its-now-safe-to-turn-off-your-computer/"/>
+        <content type="html">&lt;h1 id=&#34;背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#背景&#34;&gt;#&lt;/a&gt; 背景&lt;/h1&gt;
+&lt;p&gt;近日博主在折騰自己的 Flipper。碰巧有一次關機時忘了拔 USB 線，然後它跳出了這個畫面來：&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/flipper_zero_shutdown.jpg&#34; class=&#34;&#34; title=&#34;It&amp;#39;s now safe to unplug the USB cable&#34;&gt;
+&lt;p&gt;一𣊬間便引起了博主的注意：這不就跟「It&#39;s now safe to turn off your computer.」一樣概念嗎？於是做了點功課，把這篇文章肝了出來......&lt;/p&gt;
+&lt;h1 id=&#34;epilogue&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#epilogue&#34;&gt;#&lt;/a&gt; Epilogue&lt;/h1&gt;
+&lt;p&gt;如果你曾經使用過 1990 年代和 2000 年代初期的電腦，你一定對那句經典提示不陌生：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;bulr&#34;&gt;(或是像博主一樣愛研究一些古科技啦 XD)&lt;/span&gt;&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_Screen.webp&#34; class=&#34;&#34; title=&#34;It&amp;#39;s now safe to turn off your computer&#34;&gt;
+&lt;p&gt;這句話曾經是 Windows 作業系統用戶的日常，代表著一個時代的科技特色&lt;/p&gt;
+&lt;p&gt;隨著電腦技術的進步，這句話逐漸消失在我們的生活中，但它背後所蘊含的歷史與技術背景，值得我們細細回味&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;bulr&#34;&gt;(說實話博主在小學時期折騰一台老 CRT Dell 時也有看到過這個畫面 XD，不過也就只有幾次罷了 TT...)&lt;/span&gt;&lt;/p&gt;
+&lt;h1 id=&#34;那句話出現的原因-早期電腦與-at-電源設計&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#那句話出現的原因-早期電腦與-at-電源設計&#34;&gt;#&lt;/a&gt; 那句話出現的原因：早期電腦與 AT 電源設計&lt;/h1&gt;
+&lt;p&gt;在 1990 年代，電腦的硬體設計與現代相比有很大的不同。當時的電腦大多採用 AT (Advanced Technology) 電源架構，這種設計需要用戶手動按下實體電源按鈕來關閉電腦&lt;/p&gt;
+&lt;p&gt;早期 Windows 95 丶 Windows 98 等作業系統在結束運行時，無法直接控制硬體電源的開關。因此，當你在系統中點擊「關機」之後，作業系統會將所有的程序結束、保存數據並安全退出，隨後顯示「It&#39;s now safe to turn off your computer. (您現在可以放心關機)」的提示，告訴用戶可以放心按下電源按鈕了。&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_zh_TW.png&#34; class=&#34;&#34; title=&#34;您現在可以放心關機&#34;&gt;
+&lt;p&gt;這段流程的設計，是為了確保在硬碟寫入操作結束後再關閉電腦，避免數據損壞或系統損壞的風險&lt;/p&gt;
+&lt;h1 id=&#34;技術的進步&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#技術的進步&#34;&gt;#&lt;/a&gt; 技術的進步&lt;/h1&gt;
+&lt;h2 id=&#34;從-at-到-atx-架構&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#從-at-到-atx-架構&#34;&gt;#&lt;/a&gt; 從 AT 到 ATX 架構&lt;/h2&gt;
+&lt;p&gt;1995 年，Intel 制定了 ATX (Advanced Technology Extended) 架構，用於取代 AT 架構。其最大的改進之一就是讓電源供應器無須再以電線㶥接至電腦機箱的電源開關，並且引入了軟體控制電源的能力。這意味著作業系統可以直接控制電腦的開關，而不需要用戶手動按下實體按鈕&lt;/p&gt;
+&lt;p&gt;在 Windows 2000 和 Windows XP 中，這一技術得到了廣泛應用。當用戶點擊「關機」時，作業系統不再顯示「It&#39;s now safe to turn off your computer.」，而是直接關閉電腦電源，讓整個過程更加自動化和方便&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/windows-xp-shutdown.png&#34; class=&#34;&#34; title=&#34;Windows XP shutdown screen&#34;&gt;
+&lt;p&gt;此後，這項技術也就成為了當今所有主流作業系統的標配&lt;/p&gt;
+&lt;h2 id=&#34;acpi-的問世&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#acpi-的問世&#34;&gt;#&lt;/a&gt; ACPI 的問世&lt;/h2&gt;
+&lt;p&gt;1996 年，Intel、Microsoft 和 Toshiba 等科技公司聯合推出了 ACPI (Advanced Configuration and Power Interface，進階組態與電源介面)，成為現代電腦電源管理的一個重要里程碑。它能夠讓作業系統直接管理電腦硬體的電源功能，而不再依賴 BIOS 或硬體來進行操作。&lt;/p&gt;
+&lt;p&gt;ACPI 的一大進步是實現了軟體控制電源關閉。作業系統可以在完成所有操作後，自動切斷電腦電源，取代了早期需要用戶手動按下實體電源按鈕的麻煩&lt;/p&gt;
+&lt;p&gt;ACPI 定義了多種電腦電源狀態，例如工作狀態（S0）、睡眠模式（S3）、休眠模式（S4）及完全關機狀態（S5），從而使電腦能夠根據需求進行節能操作。這些功能不僅讓桌上型電腦更加便利，也提升了筆記型電腦的能源效率，延長了電池壽命&lt;/p&gt;
+&lt;p&gt;ACPI 還支援硬體設備的即時管理，允許作業系統根據需要啟用或關閉特定的硬體設備，例如硬碟或顯示器，進一步降低能源消耗&lt;/p&gt;
+&lt;h1 id=&#34;一段早已消失的記憶卻充滿幾代人的回憶&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一段早已消失的記憶卻充滿幾代人的回憶&#34;&gt;#&lt;/a&gt; 一段早已消失的記憶，卻充滿幾代人的回憶&lt;/h1&gt;
+&lt;p&gt;對於許多經歷過早期電腦時代的人來說，「It&#39;s now safe to turn off your computer.」這句話不僅是一個提示，更是一種懷舊的象徵。它代表了那個時代的技術限制，也提醒我們科技的進步如何改變了我們的日常生活&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_XP.png&#34; class=&#34;&#34; title=&#34;It&amp;#39;s now safe to turn off your computer&#34;&gt;
+&lt;p&gt;如今，我們的電腦和智慧裝置幾乎可以隨時進入休眠或關機狀態，而不需要擔心數據損壞的問題。然而，那句簡單的提示語，卻像是時光機一樣，把我們帶回到一個需要耐心等待的時代&lt;/p&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/computer-science/its-now-safe-to-turn-off-your-computer/Windows-11-shutdown.png&#34; class=&#34;&#34; title=&#34;Windows 11 shutdown screen&#34;&gt;
+&lt;h1 id=&#34;prologue&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#prologue&#34;&gt;#&lt;/a&gt; Prologue&lt;/h1&gt;
+&lt;p&gt;「It&#39;s now safe to turn off your computer.」的消失，標誌著電腦硬體與軟體設計的進步。從需要手動關機，到如今自動化的流程，這一變化體現了科技如何讓使用者體驗變得更簡單、更人性化&lt;/p&gt;
+&lt;p&gt;雖然這句話已經成為歷史，但它仍然是許多人心中的一段美好回憶。當我們回顧那個時代，不僅僅是在緬懷過去的科技，更是在反思我們如何靠著創新一步步走向今天的便利生活&lt;/p&gt;
+&lt;p&gt;你還記得這句話嗎？這句曾經讓人熟悉的提示，是否也勾起了你對過去的回憶呢？&lt;/p&gt;
+</content>
+        <category term="隨筆" scheme="https://lolicon.wtf/categories/casual/" />
+        <category term="Windows" scheme="https://lolicon.wtf/tags/Windows/" />
+        <category term="OS" scheme="https://lolicon.wtf/tags/OS/" />
+        <category term="ACPI" scheme="https://lolicon.wtf/tags/ACPI/" />
+        <category term="Legacy OS" scheme="https://lolicon.wtf/tags/Legacy-OS/" />
+        <updated>2025-03-22T15:09:01.000Z</updated>
+    </entry>
     <entry>
         <id>https://lolicon.wtf/posts/computer-science/windows-xp-vm-sound-distortion-fix/</id>
         <title>解決 Windows XP 虛擬機音效問題</title>
@@ -52,9 +100,9 @@
         <category term="教學" scheme="https://lolicon.wtf/tags/%E6%95%99%E5%AD%B8/" />
         <category term="Computer Science" scheme="https://lolicon.wtf/tags/Computer-Science/" />
         <category term="Windows" scheme="https://lolicon.wtf/tags/Windows/" />
+        <category term="Legacy OS" scheme="https://lolicon.wtf/tags/Legacy-OS/" />
         <category term="Windows XP" scheme="https://lolicon.wtf/tags/Windows-XP/" />
         <category term="VM" scheme="https://lolicon.wtf/tags/VM/" />
-        <category term="Legacy OS" scheme="https://lolicon.wtf/tags/Legacy-OS/" />
         <updated>2025-03-14T09:09:01.000Z</updated>
     </entry>
     <entry>
