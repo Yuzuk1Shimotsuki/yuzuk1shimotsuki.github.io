@@ -34,8 +34,8 @@
 &lt;p&gt;隨著電腦技術的進步，這句話逐漸消失在我們的生活中，但它背後所蘊含的歷史與技術背景，值得我們細細回味&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;bulr&#34;&gt;(說實話博主在小學時期折騰一台老 CRT Dell 時也有看到過這個畫面 XD，不過也就只有幾次罷了 TT...)&lt;/span&gt;&lt;/p&gt;
 &lt;h1 id=&#34;那句話出現的原因-早期電腦與-at-電源設計&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#那句話出現的原因-早期電腦與-at-電源設計&#34;&gt;#&lt;/a&gt; 那句話出現的原因：早期電腦與 AT 電源設計&lt;/h1&gt;
-&lt;p&gt;在 1990 年代，電腦的硬體設計與現代相比有很大的不同。當時的電腦大多採用 AT (Advanced Technology) 電源架構，這種設計需要用戶手動按下實體電源按鈕來關閉電腦&lt;/p&gt;
-&lt;p&gt;早期 Windows 95 丶 Windows 98 等作業系統在結束運行時，無法直接控制硬體電源的開關。因此，當你在系統中點擊「關機」之後，作業系統會將所有的程序結束、保存數據並安全退出，隨後顯示「It&#39;s now safe to turn off your computer. (您現在可以放心關機)」的提示，告訴用戶可以放心按下電源按鈕了&lt;/p&gt;
+&lt;p&gt;在 1990 年代，電腦的硬體設計與現代相比有很大的不同。當時的電腦大多採用 AT (Advanced Technology) 電源架構。即機箱具有一個直接連到電源供應器的電源開關。而開關的主要形式，是一個雙極式的開關。其四條針腳㶥接到對應的電線。這種設計下無法進行軟件關機。需要用戶手動按下實體電源按鈕來關閉電腦&lt;/p&gt;
+&lt;p&gt;所以，早前 Windows 95 丶 Windows 98 等作業系統在結束運行時，由於無法直接控制硬體電源的開關，當你在系統中點擊「關機」之後，作業系統會將所有的程序結束、保存數據並安全退出，隨後顯示「It&#39;s now safe to turn off your computer. (您現在可以放心關機)」的提示，告訴用戶可以放心按下電源按鈕了&lt;/p&gt;
 &lt;img loading=&#34;lazy&#34; data-src=&#34;/posts/casual/its-now-safe-to-turn-off-your-computer/Its_now_safe_to_turn_off_your_computer_zh_TW.png&#34; class=&#34;&#34; title=&#34;您現在可以放心關機&#34;&gt;
 &lt;p&gt;這段流程的設計，是為了確保在硬碟寫入操作結束後再關閉電腦，避免數據損壞或系統損壞的風險&lt;/p&gt;
 &lt;h1 id=&#34;技術的進步&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#技術的進步&#34;&gt;#&lt;/a&gt; 技術的進步&lt;/h1&gt;
