@@ -1629,7 +1629,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Noto Sans', 'Noto Serif SC', 'Noto Serif JP', 'Noto Sans', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Noto Sans', 'Noto Serif TC', 'Noto Serif JP', 'Noto Sans', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 1.25rem 0 0.9375rem;
@@ -1640,7 +1640,7 @@ h3.title,
 h4.title,
 h5.title,
 h6.title {
-  font-family: 'Noto Sans', 'Noto Serif JP', 'Noto Serif SC', 'Noto Sans', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Noto Sans', 'Noto Serif JP', 'Noto Serif TC', 'Noto Sans', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 a {
   border: none;
@@ -5727,7 +5727,7 @@ code,
 }
 .links .item .title {
   margin: 0.5rem 0;
-  font-family: 'Noto Sans', 'Noto Serif JP', 'Noto Serif SC', 'Noto Sans', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Noto Sans', 'Noto Serif JP', 'Noto Serif TC', 'Noto Sans', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   font-weight: bold;
   color: var(--bg-color);
   border: none;
